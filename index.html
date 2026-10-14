@@ -1,0 +1,981 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Caso Grupo 1 · Lula 2026</title>
+<meta name="description" content="Caso grupal de comunicación política: campaña presidencial de Lula en la segunda vuelta de Brasil 2026.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400..900;1,400..900&display=swap">
+<style>
+:root{
+  --g900:#123F20;--g800:#17552A;--g700:#1E6B2E;--g600:#237A33;--g500:#2E8B2A;--g400:#2FA83A;--g300:#7BD143;--g100:#DDF0D2;
+  --y500:#F2C230;--y400:#F9D84A;--y600:#E3A81E;--y700:#B07D10;--y100:#FCEFB4;
+  --cream:#FBF6E3;--paper:#FFFDF5;--ink:#1F3B26;
+  --navy:#1C2541;--navy2:#26315A;--navy3:#33406D;
+  --ease:cubic-bezier(.22,.9,.24,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;overflow:hidden}
+body{font-family:'Montserrat',Arial,sans-serif;color:var(--g800);
+  background:radial-gradient(ellipse at 30% 20%,#FFFBEA 0%,#F6EDC6 45%,#E4D58A 100%);}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;
+  background:radial-gradient(circle at 75% 15%,rgba(255,255,240,.85),rgba(255,255,240,0) 40%),
+  radial-gradient(circle at 10% 90%,rgba(123,209,67,.22),rgba(123,209,67,0) 45%);}
+#viewport{position:fixed;inset:0;overflow:hidden}
+#world{position:absolute;left:0;top:0;transform-origin:0 0;will-change:transform}
+#fx,#fx2{position:fixed;inset:0;pointer-events:none;z-index:5}
+
+/* ---------- station ---------- */
+.st{position:absolute;width:1920px;height:1080px;overflow:hidden;border-radius:28px;
+  box-shadow:0 40px 120px rgba(40,60,20,.28);transition:opacity .6s;opacity:.42;cursor:pointer}
+.st.cur{opacity:1;cursor:default}
+body.ov .st{opacity:.92}
+body.ov .st:hover{opacity:1;box-shadow:0 0 0 12px var(--y500),0 40px 120px rgba(40,60,20,.3)}
+.in{position:absolute;inset:0;padding:96px 128px 88px}
+.t-cream{background:radial-gradient(ellipse at 22% 18%,#FFFDF3 0%,#F8F0CC 58%,#EBDD92 100%);color:var(--g800)}
+.t-green{background:linear-gradient(150deg,#2FA83A 0%,#1E7A32 45%,#134A24 100%);color:var(--cream)}
+.t-gold{background:linear-gradient(135deg,#FBE36A 0%,#F2C230 50%,#DE9F19 100%);color:var(--g800)}
+.t-navy{background:radial-gradient(ellipse at 80% 0%,#2A3766 0%,#1C2541 55%,#141B33 100%);color:#FBFAF5}
+
+.eb{font-size:24px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:var(--y700)}
+.t-green .eb,.t-navy .eb{color:var(--y400)}
+.t-gold .eb{color:var(--g700)}
+.tt{font-size:64px;font-weight:900;line-height:1.06;letter-spacing:-.5px;margin-top:10px}
+.sub{font-size:30px;font-weight:600;color:var(--g500);margin-top:12px}
+.t-green .sub{color:#D8F0C4}.t-navy .sub{color:#C9D1EA}
+.head{margin-bottom:36px}
+
+/* ---------- reveal ---------- */
+.ln{display:block;overflow:hidden;padding-bottom:.08em}
+.ln>span{display:block;transform:translateY(110%)}
+.fx{opacity:0;transform:translateY(28px)}
+.fx.l{transform:translateX(-60px)}.fx.r{transform:translateX(60px)}.fx.s{transform:scale(.82)}
+.st.on .ln>span{transform:none;transition:transform 1.1s var(--ease)}
+.st.on .fx{opacity:1;transform:none;transition:opacity .9s var(--ease),transform 1s var(--ease)}
+.st.idle .ln>span,.st.idle .fx{transform:none;opacity:1;transition:none}
+.bar{height:12px;border-radius:8px;background:rgba(23,85,42,.12);overflow:hidden;margin-top:10px}
+.bar>i{display:block;height:100%;width:0;border-radius:8px;background:linear-gradient(90deg,var(--g300),var(--g400))}
+.bar.gray>i{background:linear-gradient(90deg,#9AA6B2,#5B6B7A)}
+.bar.gold>i{background:linear-gradient(90deg,var(--y400),var(--y600))}
+.st.on .bar>i{width:var(--w);transition:width 1.6s var(--ease) .5s}
+.st.idle .bar>i{width:var(--w);transition:none}
+.draw path,.draw line{stroke-dasharray:var(--len);stroke-dashoffset:var(--len)}
+.st.on .draw path,.st.on .draw line{stroke-dashoffset:0;transition:stroke-dashoffset 1.8s var(--ease) .2s}
+.st.idle .draw path,.st.idle .draw line{stroke-dashoffset:0;transition:none}
+
+/* ---------- shapes ---------- */
+.rombo{position:absolute}
+.circ{position:absolute;border-radius:50%;object-fit:cover;box-shadow:0 20px 60px rgba(0,0,0,.2)}
+
+/* ---------- tables ---------- */
+.tbl{display:flex;flex-direction:column;border-radius:18px;overflow:hidden;background:var(--paper);
+  box-shadow:0 18px 50px rgba(23,85,42,.14)}
+.tr{display:grid;gap:0;border-top:1px solid #EAE2BE;align-items:start}
+.tr>div{padding:16px 24px;font-size:22px;line-height:1.38;color:var(--ink)}
+.tr>div:first-child{font-weight:800;color:var(--g800)}
+.tr.th{background:var(--g800);border-top:none}
+.tr.th>div{color:var(--cream);font-weight:800;font-size:20px;letter-spacing:1.5px;text-transform:uppercase;padding:14px 24px}
+.tbl.sm .tr>div{font-size:20px;padding:12px 20px}
+.tr.hl{background:var(--y100)}.tr.alt{background:#F6F2DF}.tr.gr{background:var(--g100)}
+.cierre{margin-top:28px;display:flex;align-items:center;gap:22px}
+.cierre .lbl{font-size:20px;font-weight:800;letter-spacing:2px;text-transform:uppercase;background:var(--g800);color:var(--y400);padding:10px 18px;border-radius:10px}
+.cierre .txt{font-size:34px;font-weight:900;color:var(--g800)}
+
+/* ---------- cards ---------- */
+.card{background:var(--paper);border-radius:20px;padding:30px 34px;box-shadow:0 16px 44px rgba(23,85,42,.13)}
+.card h3{font-size:34px;font-weight:900;color:var(--g800);margin-bottom:12px}
+.card p,.card li{font-size:22px;line-height:1.42;color:var(--ink)}
+.cap{font-size:17px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--y700);margin:16px 0 6px}
+ul.b{list-style:none;display:flex;flex-direction:column;gap:12px}
+ul.b li{position:relative;padding-left:30px}
+ul.b li::before{content:"";position:absolute;left:0;top:.5em;width:14px;height:14px;background:var(--y500);transform:rotate(45deg)}
+
+/* ---------- HUD ---------- */
+#hud{position:fixed;left:0;right:0;bottom:0;z-index:10;display:flex;align-items:center;gap:18px;
+  padding:14px 22px;font-size:14px;font-weight:700;color:var(--g800);pointer-events:none}
+#hud .sec{background:rgba(255,253,245,.86);padding:8px 14px;border-radius:999px;box-shadow:0 6px 20px rgba(0,0,0,.08)}
+#hud .sp{flex:1}
+#hud button{pointer-events:auto;border:none;background:var(--g800);color:var(--cream);width:44px;height:44px;border-radius:50%;
+  font-size:20px;font-weight:900;cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.15)}
+#hud button:hover{background:var(--g600)}
+#hud .num{background:var(--y500);color:var(--g900);padding:8px 14px;border-radius:999px;font-variant-numeric:tabular-nums}
+#prog{position:fixed;left:0;top:0;height:5px;background:linear-gradient(90deg,var(--g400),var(--y500));z-index:11;width:0;transition:width .8s var(--ease)}
+#hint{position:fixed;top:18px;left:50%;transform:translateX(-50%);z-index:11;background:rgba(23,85,42,.92);color:var(--cream);
+  font-size:14px;font-weight:600;padding:10px 18px;border-radius:999px;transition:opacity .8s;pointer-events:none}
+
+@media print{
+  @page{size:1920px 1080px;margin:0}
+  html,body{overflow:visible;height:auto;background:#fff}
+  body::before,#fx,#fx2,#hud,#prog,#hint{display:none!important}
+  #viewport{position:static;overflow:visible}
+  #world{position:static;transform:none!important}
+  .st{position:relative!important;left:auto!important;top:auto!important;transform:none!important;opacity:1!important;
+    border-radius:0;box-shadow:none;break-after:page;page-break-after:always}
+  .ln>span,.fx{transform:none!important;opacity:1!important}
+  .bar>i{width:var(--w)!important}
+  .draw path,.draw line{stroke-dashoffset:0!important}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<linearGradient id="gG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7BD143"/><stop offset=".5" stop-color="#2FA83A"/><stop offset="1" stop-color="#156B2B"/></linearGradient>
+<linearGradient id="gY" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FBE36A"/><stop offset=".5" stop-color="#F2C230"/><stop offset="1" stop-color="#D99A17"/></linearGradient>
+</defs></svg>
+
+<div id="prog"></div>
+<div id="viewport"><div id="world">
+
+<!-- ================= PORTADA ================= -->
+<section class="st t-cream" data-sec="Portada" data-shape="anillo" data-sx="1340" data-sy="506" data-ss="760" data-pc="gold">
+ <img class="circ fx s" src="assets/lula-oficial.jpg" alt="Retrato oficial de Lula con la banda presidencial" style="left:1028px;top:194px;width:624px;height:624px">
+ <svg class="rombo draw" viewBox="0 0 1300 1000" style="left:760px;top:60px;width:1160px;height:892px" aria-hidden="true">
+  <path class="fx" fill="url(#gG)" fill-rule="evenodd" d="M0 500 L650 0 L1300 500 L650 1000 Z M300 500 A350 350 0 1 0 1000 500 A350 350 0 1 0 300 500 Z"/>
+  <path fill="none" stroke="#F2C230" stroke-width="10" d="M0 500 L650 0 L1300 500 L650 1000 Z"/>
+ </svg>
+ <div style="position:absolute;left:128px;top:150px;width:720px">
+  <p class="eb fx" style="color:var(--g500)">Caso grupal de comunicación política</p>
+  <h1 class="ln" style="font-size:98px;font-weight:900;line-height:1.02;margin-top:26px;color:var(--g800)"><span>Campaña presidencial de Lula</span></h1>
+  <h2 class="ln" style="font-size:56px;font-weight:800;line-height:1.08;margin-top:22px;width:590px;color:var(--g500)"><span>en la segunda vuelta de Brasil 2026</span></h2>
+ </div>
+ <div class="fx l" style="position:absolute;left:128px;top:880px;width:1380px;height:130px;background:linear-gradient(90deg,#17552A,#237A33);display:flex;flex-direction:column;justify-content:center;padding:0 40px;gap:6px;border-radius:16px 0 0 16px">
+  <p style="font-size:30px;font-weight:800;color:var(--cream)">Comunicación política, <i>storytelling</i> y narrativa</p>
+  <p style="font-size:23px;font-weight:500;color:#DCEFC9">Diplomatura en Campañas Electorales, Estrategia Política e Inteligencia Artificial</p>
+ </div>
+ <div class="fx r" style="position:absolute;left:1508px;top:880px;width:284px;height:130px;background:linear-gradient(135deg,#F9D84A,#E9B21F);display:flex;align-items:center;justify-content:center;border-radius:0 16px 16px 0">
+  <p style="font-size:48px;font-weight:900;color:var(--g800)">Grupo 1</p>
+ </div>
+</section>
+
+<!-- ================= ÍNDICE ================= -->
+<section class="st t-cream" data-sec="Índice" data-shape="anillo" data-sx="1650" data-sy="138" data-ss="197" data-pc="gold">
+ <img class="circ fx s" src="assets/lula-oficial.jpg" alt="Retrato oficial de Lula" style="left:1569px;top:57px;width:162px;height:162px">
+ <svg class="rombo draw" viewBox="0 0 1300 1000" style="left:1500px;top:22px;width:300px;height:231px" aria-hidden="true">
+  <path class="fx" fill="url(#gG)" fill-rule="evenodd" d="M0 500 L650 0 L1300 500 L650 1000 Z M300 500 A350 350 0 1 0 1000 500 A350 350 0 1 0 300 500 Z"/>
+  <path fill="none" stroke="#F2C230" stroke-width="12" d="M0 500 L650 0 L1300 500 L650 1000 Z"/>
+ </svg>
+ <div class="in">
+  <h2 class="ln" style="font-size:96px;font-weight:900"><span>Índice</span></h2>
+  <div style="display:grid;grid-template-columns:780px 820px;gap:64px;margin-top:56px">
+   <div class="card fx l" style="border-left:12px solid var(--y500);display:flex;flex-direction:column;gap:18px;padding:40px 48px">
+    <p style="font-size:28px;font-weight:900;color:var(--y700);letter-spacing:1px;text-transform:uppercase">Contexto inicial</p>
+    <p class="fx" style="font-size:28px;font-weight:600">Contexto electoral</p>
+    <p class="fx" style="font-size:28px;font-weight:600">Diagnóstico estratégico</p>
+    <p class="fx" style="font-size:28px;font-weight:800;color:var(--g500)">1 Framing</p>
+    <p class="fx" style="font-size:28px;font-weight:800;color:var(--g500)">2 Caja de mensaje</p>
+    <p class="fx" style="font-size:28px;font-weight:800;color:var(--g500)">3 Componentes del mensaje</p>
+    <p class="fx" style="font-size:28px;font-weight:800;color:var(--g500)">4 Narrativa de campaña</p>
+    <p class="fx" style="font-size:28px;font-weight:800;color:var(--g500)">5 Eslogan y sistema de marca</p>
+   </div>
+   <div class="fx r" style="background:linear-gradient(150deg,#2FA83A,#17552A);border-radius:20px;padding:40px 48px;display:flex;flex-direction:column;gap:12px;box-shadow:0 16px 44px rgba(23,85,42,.25)">
+    <p style="font-size:28px;font-weight:900;color:var(--y400);letter-spacing:1px;text-transform:uppercase">Anexos</p>
+    <p class="fx" style="font-size:25px;font-weight:600;color:var(--cream)">Resultados que sostienen el mensaje</p>
+    <p class="fx" style="font-size:25px;font-weight:600;color:var(--cream)">Cinco ejes de campaña</p>
+    <p class="fx" style="font-size:25px;font-weight:600;color:var(--cream)">Cómo responde nuestra campaña</p>
+    <p class="fx" style="font-size:25px;font-weight:600;color:var(--cream)">Serie ciudadana de contraste</p>
+    <p class="fx" style="font-size:25px;font-weight:600;color:var(--cream)">Meta electoral</p>
+    <p class="fx" style="font-size:25px;font-weight:600;color:var(--cream)">Criterios de ejecución</p>
+    <p class="fx" style="font-size:25px;font-weight:600;color:var(--cream)">Primero nuestra familia, después su familia</p>
+    <p class="fx" style="font-size:25px;font-weight:600;color:var(--cream)">Campaña ciudadana (lado B): los pecados capitales</p>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- ================= CONTEXTO ELECTORAL ================= -->
+<section class="st t-cream" data-sec="Contexto inicial" data-shape="marco" data-pc="green">
+ <div class="in">
+  <div class="head">
+   <p class="eb fx">Contexto inicial</p>
+   <h2 class="tt ln"><span>Contexto electoral</span></h2>
+   <p class="sub fx">Primera vuelta del 4 de octubre y balotaje del 25 de octubre de 2026</p>
+  </div>
+  <div class="tbl">
+   <div class="tr th" style="grid-template-columns:20% 34% 46%"><div>Indicador</div><div>Resultado</div><div>Lectura</div></div>
+   <div class="tr fx" style="grid-template-columns:20% 34% 46%"><div>Flávio Bolsonaro</div><div><span class="cnt" data-to="47.03" data-dec="2">47,03</span> % · <span class="cnt" data-to="56104268" data-dec="0" data-thou="1">56.104.268</span> votos<div class="bar gray" style="--w:94.06%"><i></i></div></div><div>Ganó la primera vuelta.</div></div>
+   <div class="tr hl fx" style="grid-template-columns:20% 34% 46%"><div>Luiz Inácio Lula da Silva</div><div><span class="cnt" data-to="45.16" data-dec="2">45,16</span> % · <span class="cnt" data-to="53876617" data-dec="0" data-thou="1">53.876.617</span> votos<div class="bar" style="--w:90.32%"><i></i></div></div><div>Debe revertir una diferencia de <span class="cnt" data-to="2227651" data-dec="0" data-thou="1">2.227.651</span> votos.</div></div>
+   <div class="tr fx" style="grid-template-columns:20% 34% 46%"><div>Otros candidatos</div><div>Aproximadamente <span class="cnt" data-to="9.32" data-dec="2">9,32</span> millones</div><div>Sus votantes son decisivos, pero no se transfieren automáticamente.</div></div>
+   <div class="tr alt fx" style="grid-template-columns:20% 34% 46%"><div>Abstención</div><div>Más de <span class="cnt" data-to="33.4" data-dec="1">33,4</span> millones</div><div>Oportunidad de movilización; no constituye una reserva automática para el PT.</div></div>
+   <div class="tr gr fx" style="grid-template-columns:20% 34% 46%"><div>Meta operativa</div><div>Entre 5,8 y 7 millones de votos adicionales</div><div>5,8 millones para competir por la mayoría; 7 millones como meta interna cercana al 51 %.</div></div>
+  </div>
+ </div>
+</section>
+
+<!-- ================= CONCLUSIÓN ================= -->
+<section class="st t-green" data-sec="Contexto inicial" data-shape="anillo" data-sx="1450" data-sy="540" data-ss="539" data-pc="gold">
+ <img class="circ fx s" src="assets/lula-sombrero-saluda.jpg" alt="Lula saluda a la multitud" style="left:1229px;top:320px;width:442px;height:442px">
+ <svg class="rombo draw" viewBox="0 0 1300 1000" style="left:1040px;top:225px;width:820px;height:631px" aria-hidden="true">
+  <path class="fx" fill="url(#gY)" fill-rule="evenodd" d="M0 500 L650 0 L1300 500 L650 1000 Z M300 500 A350 350 0 1 0 1000 500 A350 350 0 1 0 300 500 Z"/>
+  <path fill="none" stroke="#7BD143" stroke-width="12" d="M0 500 L650 0 L1300 500 L650 1000 Z"/>
+ </svg>
+ <div style="position:absolute;left:128px;top:260px;width:840px">
+  <p class="eb fx" style="font-size:30px">Conclusión</p>
+  <h2 class="ln" style="font-size:80px;font-weight:900;line-height:1.06;margin-top:22px"><span>La elección sigue abierta.</span></h2>
+  <p class="fx" style="font-size:40px;font-weight:600;line-height:1.38;margin-top:34px;color:#E3F3D6">Lula necesita retener su voto, captar la mayoría de los votos de las candidaturas eliminadas y recuperar participación.</p>
+ </div>
+</section>
+
+<!-- ================= DIAGNÓSTICO ================= -->
+<section class="st t-cream" data-sec="Contexto inicial" data-shape="marco" data-pc="green">
+ <div class="in">
+  <div class="head">
+   <p class="eb fx">Contexto inicial</p>
+   <h2 class="tt ln"><span>Diagnóstico estratégico</span></h2>
+   <p class="sub fx">Qué explica el retroceso y dónde está la oportunidad</p>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px">
+   <div class="card fx l" style="border-top:10px solid var(--g400)">
+    <h3>Hallazgos electorales</h3>
+    <ul class="b">
+     <li class="fx">Lula perdió aproximadamente <b><span class="cnt" data-to="3.38" data-dec="2">3,38</span> millones</b> de votos respecto de la primera vuelta de 2022.</li>
+     <li class="fx">Perdió <b><span class="cnt" data-to="713" data-dec="0">713</span> municipios</b> que había ganado en la primera vuelta de 2022 (pasó de 3.376 a 2.663).</li>
+     <li class="fx">La caída fue mayor en las ciudades pequeñas, en el interior y en los territorios con fuerte peso del agronegocio.</li>
+     <li class="fx">La abstención fue la más alta en una primera vuelta presidencial desde 1998.</li>
+     <li class="fx">Flávio conserva una ventaja marcada entre los electores evangélicos.</li>
+    </ul>
+   </div>
+   <div class="card fx r" style="border-top:10px solid var(--y500)">
+    <h3>Problemas de comunicación</h3>
+    <ul class="b">
+     <li class="fx">Mensaje demasiado anclado en el pasado y poco conectado con las preocupaciones cotidianas.</li>
+     <li class="fx">Descontento de los sectores medios por los impuestos, los servicios públicos y la movilidad social.</li>
+     <li class="fx">Redes sociales débiles, fragmentadas y con varios lemas simultáneos.</li>
+     <li class="fx">Pérdida de presencia territorial en municipios pequeños y zonas del interior.</li>
+     <li class="fx">Necesidad de reconocer errores sin dejar de defender los resultados alcanzados.</li>
+    </ul>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- ================= DECISIÓN ================= -->
+<section class="st t-gold" data-sec="Contexto inicial" data-shape="anillo" data-sx="1560" data-sy="700" data-ss="460" data-pc="green">
+ <div style="position:absolute;left:128px;top:300px;width:1120px">
+  <p class="eb fx" style="font-size:30px">Decisión estratégica</p>
+  <p class="ln" style="font-size:66px;font-weight:900;line-height:1.14;margin-top:26px;color:var(--g800)"><span>Presentar la continuidad como una nueva etapa: proteger lo logrado, corregir lo pendiente y avanzar hacia el futuro.</span></p>
+ </div>
+</section>
+
+<!-- ================= 1 FRAMING (apertura) ================= -->
+<section class="st t-cream" data-sec="1 Framing" data-shape="anillo" data-sx="1340" data-sy="506" data-ss="760" data-pc="green">
+ <img class="circ fx s" src="assets/lula-cuidado.jpg" alt="Lula con trabajadoras de la salud" style="left:1028px;top:194px;width:624px;height:624px">
+ <svg class="rombo draw" viewBox="0 0 1300 1000" style="left:760px;top:60px;width:1160px;height:892px" aria-hidden="true">
+  <path class="fx" fill="url(#gY)" fill-rule="evenodd" d="M0 500 L650 0 L1300 500 L650 1000 Z M300 500 A350 350 0 1 0 1000 500 A350 350 0 1 0 300 500 Z"/>
+  <path fill="none" stroke="#2FA83A" stroke-width="10" d="M0 500 L650 0 L1300 500 L650 1000 Z"/>
+ </svg>
+ <div style="position:absolute;left:128px;top:200px;width:720px">
+  <p class="ln" style="font-size:220px;font-weight:900;line-height:1;color:var(--g400)"><span>1</span></p>
+  <h1 class="ln" style="font-size:116px;font-weight:900;line-height:1.02;color:var(--g800)"><span>Framing</span></h1>
+  <h2 class="ln" style="font-size:50px;font-weight:800;line-height:1.1;margin-top:18px;color:var(--g500)"><span>«El cambio continúa»</span></h2>
+  <p class="fx" style="font-size:32px;font-weight:600;margin-top:28px;color:#3D5A2E">Problema, causa, evaluación y solución</p>
+ </div>
+</section>
+
+<!-- ================= JINGLE ================= -->
+<section class="st t-green" data-sec="1 Framing" data-shape="marco" data-pc="gold">
+ <div style="position:absolute;left:128px;top:84px;width:1664px">
+  <p class="eb fx">1 Framing · «El cambio continúa»</p>
+ </div>
+ <div class="fx s" style="position:absolute;left:240px;top:150px;width:1440px;height:810px;border-radius:22px;overflow:hidden;box-shadow:0 30px 90px rgba(0,0,0,.45);border:8px solid var(--y500);background:#000">
+  <video class="jingle" src="assets/jingle.mp4" poster="assets/jingle-poster.jpg" preload="metadata" playsinline controls style="width:100%;height:100%;object-fit:cover;display:block"></video>
+ </div>
+</section>
+
+<!-- ================= 1 FRAMING (tabla) ================= -->
+<section class="st t-cream" data-sec="1 Framing" data-shape="marco" data-pc="green">
+ <div class="in" style="padding-top:80px">
+  <div class="head" style="margin-bottom:28px">
+   <p class="eb fx">1 Framing · «El cambio continúa»</p>
+   <h2 class="tt ln" style="font-size:54px"><span>Problema, causa, evaluación y solución</span></h2>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:24px;height:770px">
+   <div class="card fx" style="border-left:12px solid #C9472D;padding:26px 32px"><h3 style="font-size:32px">Problema</h3>
+    <p style="font-size:22px">Lo que los hogares ganaron desde 2023 está en riesgo por un recorte de gasto que no aclara qué programas afecta.</p>
+    <p class="cap">Dato que lo sostiene</p><p style="font-size:20px;color:#4A5A45">El equipo de Flávio estudia una enmienda constitucional para recortar entre R$ 190 mil y R$ 300 mil millones y revocar cerca de 1.000 actos por decreto (Poder360, 10 de octubre).</p></div>
+   <div class="card fx" style="border-left:12px solid var(--y600);padding:26px 32px"><h3 style="font-size:32px">Causa</h3>
+    <p style="font-size:22px">Un candidato que dice una cosa y hace otra, y que pone primero a su familia: promete una amnistía «todavía en la transición» o el indulto para su padre.</p>
+    <p class="cap">Dato que lo sostiene</p><p style="font-size:20px;color:#4A5A45">Entrevista de Flávio a TV Globo, 28 de agosto; acto en São Gonçalo, 10 de octubre.</p></div>
+   <div class="card fx" style="border-left:12px solid var(--g500);padding:26px 32px"><h3 style="font-size:32px">Evaluación</h3>
+    <p style="font-size:22px">Con Jair Bolsonaro (2019-2022), la pobreza bajó un punto (del 32,6 % al 31,6 %) y el ingreso real cayó un 3,7 % (de R$ 3.238 a R$ 3.117); con Lula, la pobreza bajó al 23,1 %, el desempleo cayó al 5,3 % y el ingreso subió a R$ 3.660.</p>
+    <p class="cap">Dato que lo sostiene</p><p style="font-size:20px;color:#4A5A45">IBGE, Síntesis de Indicadores Sociales 2025 y PNAD Contínua.</p></div>
+   <div class="card fx" style="border-left:12px solid var(--g300);background:linear-gradient(150deg,#2FA83A,#17552A);padding:26px 32px"><h3 style="font-size:32px;color:var(--y400)">Solución</h3>
+    <p style="font-size:22px;color:var(--cream)">Seguir con lo que funciona: Bolsa Família, SUS, Minha Casa Minha Vida, fin de la escala de trabajo 6×1 y alimentos más baratos.</p>
+    <p class="cap" style="color:var(--y400)">Dato que lo sostiene</p><p style="font-size:20px;color:#D8F0C4">Propuestas de Lula en su programa de TV del 9 de octubre.</p></div>
+  </div>
+ </div>
+</section>
+
+<!-- ================= MENSAJE CENTRAL ================= -->
+<section class="st t-green" data-sec="1 Framing" data-shape="anillo" data-sx="1450" data-sy="540" data-ss="539" data-pc="gold">
+ <img class="circ fx s" src="assets/lula-confeti.jpg" alt="Lula entre confeti" style="left:1229px;top:320px;width:442px;height:442px">
+ <svg class="rombo draw" viewBox="0 0 1300 1000" style="left:1040px;top:225px;width:820px;height:631px" aria-hidden="true">
+  <path class="fx" fill="url(#gY)" fill-rule="evenodd" d="M0 500 L650 0 L1300 500 L650 1000 Z M300 500 A350 350 0 1 0 1000 500 A350 350 0 1 0 300 500 Z"/>
+  <path fill="none" stroke="#7BD143" stroke-width="12" d="M0 500 L650 0 L1300 500 L650 1000 Z"/>
+ </svg>
+ <div style="position:absolute;left:128px;top:270px;width:860px">
+  <p class="eb fx" style="font-size:30px">Mensaje central</p>
+  <p class="ln" style="font-size:70px;font-weight:900;line-height:1.12;margin-top:26px"><span>Brasil avanzó, pero todavía falta.</span></p>
+  <p class="fx" style="font-size:42px;font-weight:600;line-height:1.36;margin-top:30px;color:#E3F3D6">La próxima etapa debe proteger lo conquistado, corregir lo pendiente y mejorar la vida cotidiana.</p>
+ </div>
+</section>
+
+<!-- ================= 2 CAJA DE MENSAJE ================= -->
+<section class="st t-cream" data-sec="2 Caja de mensaje" data-shape="marco" data-pc="green">
+ <div class="in" style="padding-top:72px">
+  <div class="head" style="margin-bottom:26px">
+   <p class="eb fx">2 Caja de mensaje</p>
+   <h2 class="tt ln" style="font-size:46px"><span>Arriba, lo que decimos; abajo, lo que dice Flávio</span></h2>
+  </div>
+  <div style="position:relative;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:22px">
+   <div class="card fx l" style="background:linear-gradient(150deg,#2FA83A,#17552A);padding:20px 28px">
+    <h3 style="font-size:26px;color:var(--y400)">Lo que decimos de Lula</h3>
+    <ul class="b" style="gap:5px">
+     <li style="font-size:19px;color:var(--cream)">Brasil sigue avanzando y cambiando su realidad.</li>
+     <li style="font-size:19px;color:var(--cream)">Menos pobreza y desempleo; mayor ingreso real.</li>
+     <li style="font-size:19px;color:var(--cream)">Protección para todas las familias.</li>
+     <li style="font-size:19px;color:var(--cream)">Soberanía, igualdad ante la ley y rendición de cuentas.</li>
+     <li style="font-size:19px;color:var(--cream)">Seguridad con coordinación, inteligencia y persecución del dinero del crimen.</li>
+    </ul></div>
+   <div class="card fx r" style="border:4px solid var(--g400);padding:20px 28px">
+    <h3 style="font-size:26px">Lo que decimos de Flávio</h3>
+    <ul class="b" style="gap:5px">
+     <li style="font-size:19px">Representa la continuidad política de la familia Bolsonaro.</li>
+     <li style="font-size:19px">Pretende indultar a su padre.</li>
+     <li style="font-size:19px">Promete reducir impuestos y gasto, pero debe explicar partidas, alcance y financiamiento.</li>
+     <li style="font-size:19px">Su equipo estudia cambios para un ajuste de hasta R$ 250.000 millones; la campaña niega que se trate de una posición oficial.</li>
+     <li style="font-size:19px">Propone endurecimiento penal, cinco nuevas prisiones federales y 500.000 plazas penitenciarias.</li>
+    </ul></div>
+   <div class="card fx l" style="background:#2A3550;padding:20px 28px">
+    <h3 style="font-size:26px;color:var(--y400)">Lo que Flávio dice de Lula</h3>
+    <ul class="b" style="gap:5px">
+     <li style="font-size:19px;color:#EEF0F7">Gasto excesivo, corrupción y riesgo económico.</li>
+     <li style="font-size:19px;color:#EEF0F7">Debilidad frente al narcotráfico.</li>
+     <li style="font-size:19px;color:#EEF0F7">Uso político de la justicia.</li>
+     <li style="font-size:19px;color:#EEF0F7">Agenda globalista contraria a los valores familiares y religiosos.</li>
+     <li style="font-size:19px;color:#EEF0F7">Lula representa el pasado.</li>
+    </ul></div>
+   <div class="card fx r" style="background:#3B4766;padding:20px 28px">
+    <h3 style="font-size:26px;color:var(--y400)">Lo que Flávio dice de sí mismo</h3>
+    <ul class="b" style="gap:5px">
+     <li style="font-size:19px;color:#EEF0F7">Dios, patria, familia y libertad.</li>
+     <li style="font-size:19px;color:#EEF0F7">Mano dura y guerra contra el narcotráfico.</li>
+     <li style="font-size:19px;color:#EEF0F7">Menos impuestos, gasto y tamaño del Estado.</li>
+     <li style="font-size:19px;color:#EEF0F7">Reducción de la edad penal y endurecimiento de las penas.</li>
+     <li style="font-size:19px;color:#EEF0F7">Un nuevo presidente para un nuevo Brasil.</li>
+    </ul></div>
+   <svg class="draw" viewBox="0 0 1664 700" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none" aria-hidden="true">
+    <line x1="832" y1="-10" x2="832" y2="710" stroke="#F2C230" stroke-width="6"/>
+    <line x1="-10" y1="50%" x2="1674" y2="50%" stroke="#F2C230" stroke-width="6"/>
+   </svg>
+  </div>
+ </div>
+</section>
+
+<!-- ================= 3 COMPONENTES ================= -->
+<section class="st t-cream" data-sec="3 Componentes del mensaje" data-shape="marco" data-pc="green">
+ <div class="in" style="padding-top:80px">
+  <div class="head" style="margin-bottom:30px">
+   <p class="eb fx">3 Componentes del mensaje</p>
+   <h2 class="tt ln" style="font-size:50px"><span>El alfa signo, el para signo y el infra signo deben repetir la misma idea</span></h2>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1.25fr;gap:26px;align-items:stretch">
+   <div class="card fx" style="padding:28px 30px;border-top:12px solid var(--g400)">
+    <h3 style="font-size:36px">Alfa signo</h3><p style="font-size:22px;font-weight:700;color:var(--g500)">¿Qué decimos?</p>
+    <p class="cap">Propuesta</p><p>«A mudança continua». Primera persona del plural, una sola cifra y una pregunta de contraste.</p>
+    <p class="cap" style="color:#B5462F">Evitar</p><p>Hablar solo del pasado, acumular cifras o usar varios lemas.</p></div>
+   <div class="card fx" style="padding:28px 30px;border-top:12px solid var(--y500)">
+    <h3 style="font-size:36px">Para signo</h3><p style="font-size:22px;font-weight:700;color:var(--g500)">¿Cómo lo decimos?</p>
+    <p class="cap">Propuesta</p><p>Calidez, firmeza y esperanza. Lenguaje cotidiano, frases cortas e historias de cuidado.</p>
+    <p class="cap" style="color:#B5462F">Evitar</p><p>Gritos, dramatización, música de terror o saturación informativa.</p></div>
+   <div class="card fx" style="padding:28px 30px;border-top:12px solid var(--g700)">
+    <h3 style="font-size:36px">Infra signo</h3><p style="font-size:22px;font-weight:700;color:var(--g500)">¿Quién habla y cómo se ve?</p>
+    <p class="cap">Propuesta</p><p style="font-size:21px">Lula como portavoz y la ciudadanía como protagonista. Familias diversas en distintos contextos (por ejemplo, salud, educación e industria) dentro de un Brasil común.</p>
+    <p style="font-size:21px;margin-top:8px">Colores: rojo como acento, junto con la paleta brasileña y otros colores, por validar con la identidad oficial.</p>
+    <p style="font-size:21px;margin-top:8px">Elementos visuales: megáfono, vestimenta informal (camisa remangada, sombrero), trazos continuos y música.</p>
+    <p class="cap" style="color:#B5462F">Evitar</p><p style="font-size:21px">Lula aislado, exceso de imágenes de archivo, dirigentes y banderas partidarias.</p></div>
+  </div>
+ </div>
+</section>
+
+<!-- ================= 4 NARRATIVA ================= -->
+<section class="st t-cream" data-sec="4 Narrativa de campaña" data-shape="marco" data-pc="green">
+ <div class="in" style="padding-top:80px">
+  <div class="head" style="margin-bottom:34px">
+   <p class="eb fx">4 Narrativa de campaña</p>
+   <h2 class="tt ln" style="font-size:54px"><span>Protagonista, objetivo, conflicto, fuerzas y resolución</span></h2>
+  </div>
+  <div style="position:relative">
+   <svg class="draw" viewBox="0 0 1664 700" style="position:absolute;left:0;top:0;width:1664px;height:700px;pointer-events:none" aria-hidden="true">
+    <path d="M60 40 L800 40 L1600 40 C1680 40 1680 370 1600 370 L60 370" fill="none" stroke="#F2C230" stroke-width="8" stroke-linecap="round"/>
+   </svg>
+   <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:30px 30px;position:relative">
+    <div class="card fx" style="padding:56px 30px 26px;position:relative;min-height:300px"><div style="position:absolute;left:24px;top:-6px;width:60px;height:60px;border-radius:50%;background:var(--g800);color:var(--y400);font-size:28px;font-weight:900;display:flex;align-items:center;justify-content:center">1</div><h3 style="font-size:30px">Protagonista</h3><p>Las familias trabajadoras que cuidan, se esfuerzan y quieren seguir progresando.</p></div>
+    <div class="card fx" style="padding:56px 30px 26px;position:relative;min-height:300px"><div style="position:absolute;left:24px;top:-6px;width:60px;height:60px;border-radius:50%;background:var(--g800);color:var(--y400);font-size:28px;font-weight:900;display:flex;align-items:center;justify-content:center">2</div><h3 style="font-size:30px">Objetivo</h3><p>Proteger lo conquistado desde 2023 y avanzar hacia mejores ingresos, viviendas, salud, seguridad y tiempo compartido en familia.</p></div>
+    <div class="card fx" style="padding:56px 30px 26px;position:relative;min-height:300px;border:4px solid #C9472D"><div style="position:absolute;left:24px;top:-6px;width:60px;height:60px;border-radius:50%;background:#C9472D;color:#fff;font-size:28px;font-weight:900;display:flex;align-items:center;justify-content:center">3</div><h3 style="font-size:30px">Conflicto</h3><p>El 25 de octubre se decide si Brasil sigue avanzando o regresa a políticas que debilitan la protección social.</p></div>
+    <div class="card fx" style="padding:56px 30px 26px;position:relative;min-height:300px;background:#2A3550"><div style="position:absolute;left:24px;top:-6px;width:60px;height:60px;border-radius:50%;background:var(--y500);color:var(--navy);font-size:28px;font-weight:900;display:flex;align-items:center;justify-content:center">4</div><h3 style="font-size:30px;color:var(--y400)">Fuerza antagónica</h3><p style="color:#EEF0F7">Incertidumbre sobre el ajuste, contradicciones entre promesas y antecedentes, y concentración familiar del poder.</p></div>
+    <div class="card fx" style="padding:56px 30px 26px;position:relative;min-height:300px"><div style="position:absolute;left:24px;top:-6px;width:60px;height:60px;border-radius:50%;background:var(--g800);color:var(--y400);font-size:28px;font-weight:900;display:flex;align-items:center;justify-content:center">5</div><h3 style="font-size:30px">Ayudante</h3><p>Lula escucha y acompaña; las políticas públicas crean oportunidades y la ciudadanía transforma su realidad.</p></div>
+    <div class="card fx" style="padding:56px 30px 26px;position:relative;min-height:300px;background:linear-gradient(150deg,#2FA83A,#17552A)"><div style="position:absolute;left:24px;top:-6px;width:60px;height:60px;border-radius:50%;background:var(--y500);color:var(--g900);font-size:28px;font-weight:900;display:flex;align-items:center;justify-content:center">6</div><h3 style="font-size:30px;color:var(--y400)">Resolución</h3><p style="color:var(--cream)">La familia moviliza a su comunidad, protege lo conquistado y mantiene el cambio en marcha.</p></div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- ================= 5 ESLOGAN ================= -->
+<section class="st t-green" data-sec="5 Eslogan y sistema de marca" data-shape="anillo" data-sx="1450" data-sy="540" data-ss="539" data-pc="gold">
+ <img class="circ fx s" src="assets/lula-brazos-abiertos.jpg" alt="Lula con los brazos abiertos" style="left:1229px;top:320px;width:442px;height:442px">
+ <svg class="rombo draw" viewBox="0 0 1300 1000" style="left:1040px;top:225px;width:820px;height:631px" aria-hidden="true">
+  <path class="fx" fill="url(#gY)" fill-rule="evenodd" d="M0 500 L650 0 L1300 500 L650 1000 Z M300 500 A350 350 0 1 0 1000 500 A350 350 0 1 0 300 500 Z"/>
+  <path fill="none" stroke="#7BD143" stroke-width="12" d="M0 500 L650 0 L1300 500 L650 1000 Z"/>
+ </svg>
+ <div style="position:absolute;left:128px;top:190px;width:860px">
+  <p class="eb fx" style="font-size:28px">5 Eslogan y sistema de marca</p>
+  <p class="fx" style="font-size:30px;font-weight:600;margin-top:14px;color:#D8F0C4">Un cierre permanente y variantes con funciones distintas</p>
+  <p class="ln" style="font-size:90px;font-weight:900;line-height:1.04;margin-top:50px;color:var(--y400)"><span>A mudança continua.</span></p>
+  <p class="ln" style="font-size:90px;font-weight:900;line-height:1.04;color:var(--cream)"><span>Por todas as famílias.</span></p>
+  <p class="fx" style="font-size:44px;font-weight:700;margin-top:40px;color:#D8F0C4">El cambio continúa. Por todas las familias.</p>
+ </div>
+</section>
+
+<!-- ================= 5 VARIANTES ================= -->
+<section class="st t-cream" data-sec="5 Eslogan y sistema de marca" data-shape="marco" data-pc="green">
+ <div class="in">
+  <div class="head">
+   <p class="eb fx">5 Eslogan y sistema de marca</p>
+   <h2 class="tt ln" style="font-size:58px"><span>A mudança continua. Por todas as famílias.</span></h2>
+  </div>
+  <div class="tbl">
+   <div class="tr th" style="grid-template-columns:20% 40% 40%"><div>Función</div><div>Portugués</div><div>Español</div></div>
+   <div class="tr fx" style="grid-template-columns:20% 40% 40%"><div>Contraste</div><div style="font-size:26px;font-weight:700">O Brasil é de todos. Não de uma só família.</div><div style="font-size:24px">Brasil es de todos. No de una sola familia.</div></div>
+   <div class="tr alt fx" style="grid-template-columns:20% 40% 40%"><div>Unidad</div><div style="font-size:26px;font-weight:700">Todas as famílias. Um só Brasil.</div><div style="font-size:24px">Todas las familias. Un solo Brasil.</div></div>
+   <div class="tr fx" style="grid-template-columns:20% 40% 40%"><div>Igualdad</div><div style="font-size:26px;font-weight:700">O futuro não tem sobrenome. Pertence a todos nós.</div><div style="font-size:24px">El futuro no tiene apellido. Nos pertenece a todos.</div></div>
+   <div class="tr alt fx" style="grid-template-columns:20% 40% 40%"><div>Protección</div><div style="font-size:26px;font-weight:700">Proteger cada família. Fazer o Brasil avançar.</div><div style="font-size:24px">Proteger a cada familia. Hacer avanzar a Brasil.</div></div>
+  </div>
+  <div class="card fx" style="margin-top:30px;display:flex;gap:30px;align-items:center;background:linear-gradient(135deg,#FBE36A,#F2C230);padding:26px 34px">
+   <p style="font-size:24px;font-weight:900;letter-spacing:2px;text-transform:uppercase;color:var(--g800)">Identidad</p>
+   <p style="font-size:24px;font-weight:600;color:var(--g900)">Paleta brasileña con rojo como acento. Familias diversas, vida cotidiana y ciudadanía antes que dirigentes.</p>
+  </div>
+ </div>
+</section>
+
+<!-- ================= EJEMPLOS ================= -->
+<section class="st t-gold" data-sec="Ejemplos" data-shape="anillo" data-sx="1445" data-sy="540" data-ss="980" data-pc="green">
+ <img class="fx s" src="assets/futuro-sobrenome.jpg" alt="Pieza O futuro não tem sobrenome" style="position:absolute;left:1000px;top:330px;width:272px;height:340px;object-fit:cover;border-radius:14px;box-shadow:0 24px 60px rgba(60,40,0,.35);transform:rotate(-5deg)">
+ <img class="fx s" src="assets/todas-familias.jpg" alt="Pieza Todas as famílias, um só Brasil" style="position:absolute;left:1302px;top:300px;width:272px;height:340px;object-fit:cover;border-radius:14px;box-shadow:0 24px 60px rgba(60,40,0,.35)">
+ <img class="fx s" src="assets/mudanca-continua.jpg" alt="Pieza A mudança continua, por todas as famílias" style="position:absolute;left:1604px;top:330px;width:272px;height:340px;object-fit:cover;border-radius:14px;box-shadow:0 24px 60px rgba(60,40,0,.35);transform:rotate(5deg)">
+ <div style="position:absolute;left:128px;top:400px;width:820px">
+  <h1 class="ln" style="font-size:150px;font-weight:900;line-height:1;color:var(--g800)"><span>Ejemplos</span></h1>
+ </div>
+</section>
+
+<!-- ================= JINGLE CASA NOVA ================= -->
+<section class="st t-cream" data-sec="Ejemplos" data-shape="marco" data-pc="green">
+ <div style="position:absolute;left:128px;top:96px;width:960px">
+  <p class="eb fx">Ejemplos · Jingle</p>
+  <h2 class="tt ln" style="font-size:58px"><span>«Casa Nova»: la casa propia para la clase media</span></h2>
+  <ul class="b" style="gap:18px;margin-top:34px">
+   <li class="fx" style="font-size:25px;line-height:1.42;color:var(--ink)"><b>Segmento:</b> clase media de 30 a 45 años de las metrópolis y capitales, donde Flávio sacó 52,7 % frente a 37,7 % y hubo 11,3 millones de abstenciones.</li>
+   <li class="fx" style="font-size:25px;line-height:1.42;color:var(--ink)"><b>Propuesta:</b> crédito del Minha Casa Minha Vida a 35 años para familias que ganan hasta R$ 13.000, con tasa del 7 % anual (hoy es 10,5 %).</li>
+   <li class="fx" style="font-size:25px;line-height:1.42;color:var(--ink)"><b>Con el 7 %,</b> la cuota de una casa de R$ 500.000 baja de R$ 3.447 a R$ 2.495, y el ingreso que se necesita baja de R$ 11.489 a R$ 8.318.</li>
+   <li class="fx" style="font-size:25px;line-height:1.42;color:var(--ink)"><b>Quien ya paga su casa</b> también pasa a la nueva tasa, y la reforma se financia a 10 años: un préstamo de R$ 30.000 pasa de R$ 853 a R$ 397 por mes.</li>
+   <li class="fx" style="font-size:25px;line-height:1.42;color:var(--ink)"><b>Pagode de roda festivo con coro,</b> el género que convoca a esa generación.</li>
+  </ul>
+ </div>
+ <div class="player fx r" style="position:absolute;left:1210px;top:110px;width:582px;height:860px;border-radius:24px;overflow:hidden;background:#123F20;box-shadow:0 30px 80px rgba(23,85,42,.35);border:8px solid var(--y500)">
+  <img src="assets/lula-reforma-casa.jpg" alt="Lula en el lanzamiento de Reforma Casa Brasil" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+  <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(18,63,32,0) 55%,rgba(18,63,32,.9) 100%)"></div>
+  <button class="playbtn" aria-label="Reproducir el jingle Casa Nova" style="position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);width:150px;height:150px;border-radius:50%;border:none;background:var(--y500);box-shadow:0 14px 40px rgba(0,0,0,.4);cursor:pointer;display:flex;align-items:center;justify-content:center">
+   <svg class="ico-play" viewBox="0 0 100 100" width="66" height="66" aria-hidden="true"><path d="M30 18 L84 50 L30 82 Z" fill="#17552A"/></svg>
+   <svg class="ico-pause" viewBox="0 0 100 100" width="62" height="62" aria-hidden="true" style="display:none"><rect x="24" y="18" width="18" height="64" rx="4" fill="#17552A"/><rect x="58" y="18" width="18" height="64" rx="4" fill="#17552A"/></svg>
+  </button>
+  <div style="position:absolute;left:32px;right:32px;bottom:30px">
+   <p style="font-size:30px;font-weight:900;color:var(--y400)">Jingle «Casa Nova»</p>
+   <p style="font-size:20px;font-weight:600;color:#DCEFC9;margin-top:4px">Pagode · <span class="tcur">0:00</span> / <span class="tdur">0:57</span></p>
+   <div class="seek" style="margin-top:14px;height:10px;border-radius:6px;background:rgba(255,255,255,.25);cursor:pointer"><div class="seekbar" style="height:100%;width:0;border-radius:6px;background:var(--y500)"></div></div>
+  </div>
+  <audio class="jingle-audio" src="assets/casa-nova.mp3" preload="metadata"></audio>
+ </div>
+</section>
+
+<!-- ================= RESULTADOS ================= -->
+<section class="st t-cream" data-sec="Anexos" data-shape="marco" data-pc="green">
+ <div class="in" style="padding-top:80px">
+  <div class="head" style="margin-bottom:26px">
+   <p class="eb fx">Anexos</p>
+   <h2 class="tt ln" style="font-size:56px"><span>Resultados que sostienen el mensaje</span></h2>
+   <p class="sub fx">Una cifra por pieza y una fuente identificable</p>
+  </div>
+  <div class="tbl sm">
+   <div class="tr th" style="grid-template-columns:19% 45% 36%"><div>Resultado</div><div>Dato</div><div>Traducción cotidiana</div></div>
+   <div class="tr fx" style="grid-template-columns:19% 45% 36%"><div>Pobreza</div><div><b><span class="cnt" data-to="31.6" data-dec="1">31,6</span> % en 2022 → <span class="cnt" data-to="23.1" data-dec="1">23,1</span> % en 2024</b></div><div>Más familias con capacidad para cubrir sus necesidades básicas.</div></div>
+   <div class="tr alt fx" style="grid-template-columns:19% 45% 36%"><div>Desempleo</div><div><b><span class="cnt" data-to="9.6" data-dec="1">9,6</span> % → <span class="cnt" data-to="5.3" data-dec="1">5,3</span> %</b></div><div>Más oportunidades de trabajo.</div></div>
+   <div class="tr fx" style="grid-template-columns:19% 45% 36%"><div>Ingreso real mensual</div><div><b>R$ <span class="cnt" data-to="3117" data-dec="0" data-thou="1">3.117</span> → R$ <span class="cnt" data-to="3660" data-dec="0" data-thou="1">3.660</span></b> · aumento aproximado del 17 %</div><div>Mayor capacidad de compra para las familias.</div></div>
+   <div class="tr alt fx" style="grid-template-columns:19% 45% 36%"><div>Bolsa Família</div><div><b><span class="cnt" data-to="19.29" data-dec="2">19,29</span> millones de familias</b> en septiembre de 2026</div><div>Ingreso, permanencia escolar y seguimiento de salud.</div></div>
+   <div class="tr fx" style="grid-template-columns:19% 45% 36%"><div>Medicamentos – Farmácia Popular</div><div>Programa incluido entre los beneficios sociales que la campaña propone proteger.</div><div>Acceso a medicamentos gratuitos o a menor precio.</div></div>
+   <div class="tr alt fx" style="grid-template-columns:19% 45% 36%"><div>Vivienda – Minha Casa Minha Vida</div><div>Programa incluido entre los beneficios sociales que la campaña propone proteger.</div><div>Más oportunidades para acceder a una vivienda y construir un hogar.</div></div>
+   <div class="tr fx" style="grid-template-columns:19% 45% 36%"><div>Seguridad – control de armas</div><div>En 2023, el Gobierno de Lula reforzó las restricciones y los controles sobre la adquisición de armas y municiones mediante el Decreto n.º 11.615, tras la flexibilización impulsada por el Gobierno de Jair Bolsonaro.</div><div>Más control sobre quién puede adquirir armas y en qué condiciones, como parte de la protección de las familias.</div></div>
+  </div>
+ </div>
+</section>
+
+<!-- ================= CINCO EJES ================= -->
+<section class="st t-cream" data-sec="Anexos" data-shape="marco" data-pc="green">
+ <div class="in">
+  <div class="head">
+   <p class="eb fx">Anexos</p>
+   <h2 class="tt ln"><span>Cinco ejes de campaña</span></h2>
+   <p class="sub fx">Protección familiar, trabajo, seguridad y presencia</p>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:22px">
+   <div class="card fx" style="padding:26px 24px;display:flex;flex-direction:column;gap:10px;border-top:12px solid var(--g400)"><p style="font-size:64px;font-weight:900;color:var(--g400);line-height:1">1</p><h3 style="font-size:26px;margin:0">Protección de las familias</h3><p style="font-size:21px">Ingresos, alimentación, salud, vivienda, seguridad y tiempo para convivir.</p><p style="font-size:22px;font-weight:800;color:var(--g600);margin-top:auto">Una familia protegida puede avanzar.</p></div>
+   <div class="card fx" style="padding:26px 24px;display:flex;flex-direction:column;gap:10px;border-top:12px solid var(--y500)"><p style="font-size:64px;font-weight:900;color:var(--y600);line-height:1">2</p><h3 style="font-size:26px;margin:0">Beneficios sociales</h3><p style="font-size:21px">Proteger Bolsa Família, Farmácia Popular, Minha Casa Minha Vida, Mais Médicos, Pé-de-Meia, alimentación escolar y Gás do Povo.</p><p style="font-size:22px;font-weight:800;color:var(--g600);margin-top:auto">Los beneficios son protección y derechos.</p></div>
+   <div class="card fx" style="padding:26px 24px;display:flex;flex-direction:column;gap:10px;border-top:12px solid var(--g400)"><p style="font-size:64px;font-weight:900;color:var(--g400);line-height:1">3</p><h3 style="font-size:26px;margin:0">Jornada laboral</h3><p style="font-size:21px">Avanzar hacia la jornada de 40 horas semanales sin reducción salarial.</p><p style="font-size:22px;font-weight:800;color:var(--g600);margin-top:auto">Más tiempo para vivir, cuidar y progresar.</p></div>
+   <div class="card fx" style="padding:26px 24px;display:flex;flex-direction:column;gap:10px;border-top:12px solid var(--y500)"><p style="font-size:64px;font-weight:900;color:var(--y600);line-height:1">4</p><h3 style="font-size:26px;margin:0">Seguridad</h3><p style="font-size:21px">Coordinación policial, inteligencia y persecución financiera de las organizaciones criminales.</p><p style="font-size:22px;font-weight:800;color:var(--g600);margin-top:auto">Firmeza con inteligencia y resultados.</p></div>
+   <div class="card fx" style="padding:26px 24px;display:flex;flex-direction:column;gap:10px;border-top:12px solid var(--g400)"><p style="font-size:64px;font-weight:900;color:var(--g400);line-height:1">5</p><h3 style="font-size:26px;margin:0">Calle, radio y redes</h3><p style="font-size:21px">Escucha territorial, radio local, debate televisado y comunicación digital coordinada.</p><p style="font-size:22px;font-weight:800;color:var(--g600);margin-top:auto">Una campaña que escucha, conversa y responde.</p></div>
+  </div>
+ </div>
+</section>
+
+<!-- ================= CÓMO RESPONDE ================= -->
+<section class="st t-cream" data-sec="Anexos" data-shape="marco" data-pc="green">
+ <div class="in" style="padding-top:80px">
+  <div class="head" style="margin-bottom:26px">
+   <p class="eb fx">Anexos</p>
+   <h2 class="tt ln" style="font-size:56px"><span>Cómo responde nuestra campaña</span></h2>
+   <p class="sub fx">Respuesta directa, dato comprobable y propuesta propia</p>
+  </div>
+  <div class="tbl sm">
+   <div class="tr th" style="grid-template-columns:24% 76%"><div>Ataque de Flávio</div><div>Respuesta de campaña</div></div>
+   <div class="tr fx" style="grid-template-columns:24% 76%"><div style="color:#B5462F">«Lula representa el pasado»</div><div>La elección se decide entre proyectos y resultados. Avanzar es proteger lo que funciona, ampliar la respuesta y seguir creciendo. El futuro no se mide por la edad de un candidato ni por los años que lleva en política, sino por sus propuestas, sus resultados y su capacidad de transformar la vida de los brasileños. Brasil necesita discutir el futuro del trabajo, la educación, la seguridad y las oportunidades, no quedarse en una pelea de etiquetas.</div></div>
+   <div class="tr alt fx" style="grid-template-columns:24% 76%"><div style="color:#B5462F">«Lula devolverá al pobre a la miseria»</div><div>La pobreza bajó del <b><span class="cnt" data-to="31.6" data-dec="1">31,6</span> %</b> al <b><span class="cnt" data-to="23.1" data-dec="1">23,1</span> %</b>. Los resultados contradicen la acusación.</div></div>
+   <div class="tr fx" style="grid-template-columns:24% 76%"><div style="color:#B5462F">«El Bolsa Família es sagrado»</div><div>Debe explicar cómo protegerá los beneficios, la salud y la educación ante el ajuste que estudian integrantes de su equipo.</div></div>
+   <div class="tr alt fx" style="grid-template-columns:24% 76%"><div style="color:#B5462F">«El Gobierno es débil frente al crimen»</div><div>Firmeza es desarticular las organizaciones criminales con inteligencia, coordinación y persecución financiera.</div></div>
+   <div class="tr fx" style="grid-template-columns:24% 76%"><div style="color:#B5462F">«Fin del personalismo»</div><div>Brasil pertenece a toda la ciudadanía. Ningún dirigente, partido o familia merece privilegios frente a la ley.</div></div>
+  </div>
+ </div>
+</section>
+
+<!-- ================= SERIE CIUDADANA ================= -->
+<section class="st t-cream" data-sec="Anexos" data-shape="marco" data-pc="green">
+ <div class="in" style="padding-top:80px">
+  <div class="head" style="margin-bottom:24px">
+   <p class="eb fx">Anexos</p>
+   <h2 class="tt ln" style="font-size:56px"><span>Serie ciudadana de contraste</span></h2>
+   <p class="sub fx">Cinco promesas, cinco contradicciones</p>
+  </div>
+  <div class="tbl">
+   <div class="tr th" style="grid-template-columns:18% 34% 48%"><div>Tema</div><div>Promesa de Bolsonaro</div><div>Pregunta o contradicción</div></div>
+   <div class="tr fx" style="grid-template-columns:18% 34% 48%"><div>Protección social</div><div>«Nadie tocará el Bolsa Família».</div><div>¿Cómo protegerá los beneficios, la salud y la educación ante un ajuste de R$ 250.000 millones? ¿De dónde sacará los fondos?</div></div>
+   <div class="tr alt fx" style="grid-template-columns:18% 34% 48%"><div>Trabajo</div><div>«El trabajador podrá elegir su jornada».</div><div>Flexibilizar la jornada significa menos salario y menos derechos: más desprotección.</div></div>
+   <div class="tr fx" style="grid-template-columns:18% 34% 48%"><div>Renovación</div><div>«Un nuevo presidente para un nuevo Brasil».</div><div>Lleva más de dos décadas en cargos electivos y continúa el proyecto familiar.</div></div>
+   <div class="tr alt fx" style="grid-template-columns:18% 34% 48%"><div>Democracia</div><div>«Fin del personalismo».</div><div>Promete convertir a su padre en protagonista. Flávio y Jair son lo mismo.</div></div>
+   <div class="tr fx" style="grid-template-columns:18% 34% 48%"><div>Seguridad</div><div>«Mano dura contra el crimen».</div><div>Más cárceles no sustituyen la inteligencia, la coordinación ni la persecución financiera.</div></div>
+  </div>
+  <div class="cierre fx"><span class="lbl">Cierre fijo</span><span class="txt">Não se deixe enganar. Compare o que ele diz com o que ele faz.</span></div>
+ </div>
+</section>
+
+<!-- ================= META ELECTORAL ================= -->
+<section class="st t-cream" data-sec="Anexos" data-shape="marco" data-pc="green">
+ <div class="in" style="padding-top:80px">
+  <div class="head" style="margin-bottom:26px">
+   <p class="eb fx">Anexos</p>
+   <h2 class="tt ln" style="font-size:56px"><span>Meta electoral</span></h2>
+   <p class="sub fx">Lula necesita sumar entre 5,8 y 7 millones de votos</p>
+  </div>
+  <div class="tbl">
+   <div class="tr th" style="grid-template-columns:38% 32% 30%"><div>Escenario</div><div>Votos que debe sumar</div><div>Exigencia</div></div>
+   <div class="tr fx" style="grid-template-columns:38% 32% 30%"><div>Vuelven a votar los 9,32 millones de electores de otros candidatos, y nadie más</div><div><b style="font-size:28px"><span class="cnt" data-to="5.77" data-dec="2">5,77</span> millones</b><div class="bar" style="--w:82.4%"><i></i></div></div><div>62 de cada 100 votos disponibles.</div></div>
+   <div class="tr alt fx" style="grid-template-columns:38% 32% 30%"><div>Lula moviliza a 2 millones de abstencionistas</div><div><b style="font-size:24px">4,77 millones de los otros candidatos + 2 millones nuevos</b><div class="bar" style="--w:96.7%"><i></i></div></div><div>51 de cada 100 votos de otras candidaturas.</div></div>
+   <div class="tr fx" style="grid-template-columns:38% 32% 30%"><div>Solo vuelve a votar el 60 % de los electores de otros candidatos</div><div><b style="font-size:28px"><span class="cnt" data-to="3.91" data-dec="2">3,91</span> millones</b><div class="bar" style="--w:55.9%"><i></i></div></div><div>70 de cada 100 votos disponibles.</div></div>
+   <div class="tr gr fx" style="grid-template-columns:38% 32% 30%"><div>Meta interna del 51 % con una participación similar</div><div><b style="font-size:28px"><span class="cnt" data-to="7" data-dec="0">7</span> millones</b><div class="bar gold" style="--w:100%"><i></i></div></div><div>Aproximadamente 75 de cada 100 votos en juego.</div></div>
+   <div class="tr alt fx" style="grid-template-columns:38% 32% 30%"><div>Referencia: crecimiento de Lula en 2022</div><div><b style="font-size:28px"><span class="cnt" data-to="3.09" data-dec="2">3,09</span> millones</b><div class="bar gray" style="--w:44.1%"><i></i></div></div><div>Repetir 2022 no sería suficiente por sí solo.</div></div>
+  </div>
+ </div>
+</section>
+
+<!-- ================= CRITERIOS ================= -->
+<section class="st t-cream" data-sec="Anexos" data-shape="marco" data-pc="green">
+ <div class="in">
+  <div class="head">
+   <p class="eb fx">Anexos</p>
+   <h2 class="tt ln" style="font-size:58px"><span>Criterios de ejecución</span></h2>
+   <p class="sub fx">Disciplina para cada pieza y cada territorio</p>
+  </div>
+  <div class="tbl">
+   <div class="tr th" style="grid-template-columns:22% 78%"><div>Decisión</div><div>Regla</div></div>
+   <div class="tr fx" style="grid-template-columns:22% 78%"><div>Mensaje</div><div style="font-size:24px">Una pieza, una idea, una cifra y un cierre.</div></div>
+   <div class="tr alt fx" style="grid-template-columns:22% 78%"><div>Propuesta</div><div style="font-size:24px">Una familia protagonista, un problema cotidiano y una solución concreta.</div></div>
+   <div class="tr fx" style="grid-template-columns:22% 78%"><div>Contraste</div><div style="font-size:24px">Declaración verificable, fecha, fuente y respuesta sin insultos.</div></div>
+   <div class="tr alt fx" style="grid-template-columns:22% 78%"><div>Territorio</div><div style="font-size:24px">Priorizar las zonas con caída del voto, abstención alta y capacidad organizativa.</div></div>
+   <div class="tr fx" style="grid-template-columns:22% 78%"><div>Canales</div><div style="font-size:24px">Calle para escuchar, radio para explicar y redes para coordinar y responder.</div></div>
+   <div class="tr alt fx" style="grid-template-columns:22% 78%"><div>Evaluación</div><div style="font-size:24px">Medir alcance, comprensión, recordación, sentimiento y movilización efectiva.</div></div>
+  </div>
+  <div class="cierre fx"><span class="lbl">Cierre</span><span class="txt">A mudança continua. Por todas as famílias.</span></div>
+ </div>
+</section>
+
+<!-- ================= FAMILIA (apertura) ================= -->
+<section class="st t-green" data-sec="Primero nuestra familia, después su familia" data-shape="anillo" data-sx="1380" data-sy="555" data-ss="760" data-pc="gold">
+ <img class="circ fx s" src="assets/lula-familia.jpg" alt="La familia de Lula en el sertão" style="left:1100px;top:260px;width:560px;height:560px">
+ <svg class="rombo draw" viewBox="0 0 1300 1000" style="left:860px;top:155px;width:1040px;height:800px" aria-hidden="true">
+  <path class="fx" fill="url(#gY)" fill-rule="evenodd" d="M0 500 L650 0 L1300 500 L650 1000 Z M300 500 A350 350 0 1 0 1000 500 A350 350 0 1 0 300 500 Z"/>
+ </svg>
+ <div style="position:absolute;left:128px;top:230px;width:820px">
+  <h2 class="ln" style="font-size:84px;font-weight:900;line-height:1.04;color:var(--y400)"><span>Primero nuestra familia,</span></h2>
+  <h2 class="ln" style="font-size:84px;font-weight:900;line-height:1.04"><span>después su familia</span></h2>
+  <p class="fx" style="font-size:34px;font-weight:600;line-height:1.4;margin-top:40px;color:#E3F3D6">¿Qué familia defiende Flávio? ¿La suya? Nuestra familia son las familias pobres y trabajadoras de Brasil; su familia es la familia Bolsonaro.</p>
+ </div>
+</section>
+
+<!-- FAMILIA rows -->
+<section class="st t-cream" data-sec="Primero nuestra familia, después su familia" data-shape="marco" data-pc="green">
+ <div class="in" style="padding-top:72px;padding-bottom:84px;display:flex;flex-direction:column">
+  <div class="head" style="margin-bottom:22px"><p class="eb fx">Primero nuestra familia, después su familia</p></div>
+  <div style="flex:1;display:flex;flex-direction:column;gap:24px">
+   <div class="card fx l" style="flex:1;display:grid;grid-template-columns:330px 1fr 1fr;gap:30px;align-items:center;padding:28px 36px;border-left:14px solid var(--g400)">
+    <div><p style="font-size:44px;font-weight:900;line-height:1;color:var(--g500)">Comida</p><p class="cap">Fuente</p><p style="font-size:18px;line-height:1.35">IBGE, 2022 y 2024; Poder360, 10/10/2026</p></div>
+    <div><p class="cap" style="margin-top:0">Pieza en español</p><p style="font-size:23px;line-height:1.38">«La prioridad de nuestra familia es la comida en la mesa: la pobreza bajó del 31,6 % al 23,1 %. La prioridad de su familia es recortar entre R$ 190 mil y R$ 300 mil millones sin decir de dónde.»</p></div>
+    <div><p class="cap" style="margin-top:0">Pieza en portugués</p><p style="font-size:23px;line-height:1.38;font-weight:600;color:var(--g800)">«A prioridade da nossa família é comida na mesa: a pobreza caiu de 31,6% para 23,1%. A prioridade da família dele é cortar entre R$ 190 bilhões e R$ 300 bilhões sem dizer de onde.»</p></div>
+   </div>
+   <div class="card fx r" style="flex:1;display:grid;grid-template-columns:330px 1fr 1fr;gap:30px;align-items:center;padding:28px 36px;border-left:14px solid var(--y500)">
+    <div><p style="font-size:44px;font-weight:900;line-height:1;color:var(--g500)">Empleo</p><p class="cap">Fuente</p><p style="font-size:18px;line-height:1.35">IBGE, PNAD Contínua; Folha vía Estado de Minas, 28/06/2026</p></div>
+    <div><p class="cap" style="margin-top:0">Pieza en español</p><p style="font-size:23px;line-height:1.38">«La prioridad de nuestra familia es el empleo: el desempleo bajó del 9,6 % al 5,3 %. Él faltó al 43 % de las votaciones del Senado en 2026.»</p></div>
+    <div><p class="cap" style="margin-top:0">Pieza en portugués</p><p style="font-size:23px;line-height:1.38;font-weight:600;color:var(--g800)">«A prioridade da nossa família é o emprego: o desemprego caiu de 9,6% para 5,3%. Ele faltou a 43% das votações do Senado em 2026.»</p></div>
+   </div>
+   <div class="card fx l" style="flex:1;display:grid;grid-template-columns:330px 1fr 1fr;gap:30px;align-items:center;padding:28px 36px;border-left:14px solid var(--g400)">
+    <div><p style="font-size:44px;font-weight:900;line-height:1;color:var(--g500)">Salario</p><p class="cap">Fuente</p><p style="font-size:18px;line-height:1.35">IBGE, PNAD Contínua; Intercept Brasil, 07/10/2026 (PEC 12/2026)</p></div>
+    <div><p class="cap" style="margin-top:0">Pieza en español</p><p style="font-size:23px;line-height:1.38">«La prioridad de nuestra familia es el salario: el ingreso real del trabajo subió de R$ 3.117 a R$ 3.660. Su familia defiende una jornada más corta con un salario más bajo.»</p></div>
+    <div><p class="cap" style="margin-top:0">Pieza en portugués</p><p style="font-size:23px;line-height:1.38;font-weight:600;color:var(--g800)">«A prioridade da nossa família é o salário: a renda real do trabalho subiu de R$ 3.117 para R$ 3.660. A família dele defende jornada menor com salário menor.»</p></div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="st t-cream" data-sec="Primero nuestra familia, después su familia" data-shape="marco" data-pc="green">
+ <div class="in" style="padding-top:72px;padding-bottom:84px;display:flex;flex-direction:column">
+  <div class="head" style="margin-bottom:22px"><p class="eb fx">Primero nuestra familia, después su familia</p></div>
+  <div style="flex:1;display:flex;flex-direction:column;gap:24px">
+   <div class="card fx l" style="flex:1;display:grid;grid-template-columns:330px 1fr 1fr;gap:30px;align-items:center;padding:28px 36px;border-left:14px solid var(--g400)">
+    <div><p style="font-size:44px;font-weight:900;line-height:1;color:var(--g500)">Casa</p><p class="cap">Fuente</p><p style="font-size:21px;line-height:1.35">CartaCapital y Diário de Notícias, marzo de 2021</p></div>
+    <div><p class="cap" style="margin-top:0">Pieza en español</p><p style="font-size:29px;line-height:1.38">«La prioridad de nuestra familia es la casa propia del Minha Casa Minha Vida. Su familia compró una mansión de R$ 5,97 millones con un patrimonio declarado de R$ 1,7 millones.»</p></div>
+    <div><p class="cap" style="margin-top:0">Pieza en portugués</p><p style="font-size:29px;line-height:1.38;font-weight:600;color:var(--g800)">«A prioridade da nossa família é a casa própria do Minha Casa Minha Vida. A família dele comprou uma mansão de R$ 5,97 milhões com patrimônio declarado de R$ 1,7 milhão.»</p></div>
+   </div>
+   <div class="card fx r" style="flex:1;display:grid;grid-template-columns:330px 1fr 1fr;gap:30px;align-items:center;padding:28px 36px;border-left:14px solid var(--y500)">
+    <div><p style="font-size:44px;font-weight:900;line-height:1;color:var(--g500)">Abuelos</p><p class="cap">Fuente</p><p style="font-size:21px;line-height:1.35">ICL Notícias, 07/10/2026</p></div>
+    <div><p class="cap" style="margin-top:0">Pieza en español</p><p style="font-size:29px;line-height:1.38">«La prioridad de nuestra familia es que la abuela pobre cobre el BPC. Él votó dos veces, en 2020, para que el BPC no llegara a más familias.»</p></div>
+    <div><p class="cap" style="margin-top:0">Pieza en portugués</p><p style="font-size:29px;line-height:1.38;font-weight:600;color:var(--g800)">«A prioridade da nossa família é que a avó pobre receba o BPC. Ele votou duas vezes, em 2020, para que o BPC não chegasse a mais famílias.»</p></div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="st t-cream" data-sec="Primero nuestra familia, después su familia" data-shape="marco" data-pc="green">
+ <div class="in" style="padding-top:72px;padding-bottom:84px;display:flex;flex-direction:column">
+  <div class="head" style="margin-bottom:22px"><p class="eb fx">Primero nuestra familia, después su familia</p></div>
+  <div style="flex:1;display:flex;flex-direction:column;gap:24px">
+   <div class="card fx l" style="flex:1;display:grid;grid-template-columns:330px 1fr 1fr;gap:30px;align-items:center;padding:28px 36px;border-left:14px solid var(--g400)">
+    <div><p style="font-size:44px;font-weight:900;line-height:1;color:var(--g500)">Padre</p><p class="cap">Fuente</p><p style="font-size:21px;line-height:1.35">TV Globo, 28/08/2026; Euronews, 29/08/2026</p></div>
+    <div><p class="cap" style="margin-top:0">Pieza en español</p><p style="font-size:29px;line-height:1.38">«La prioridad de nuestra familia es trabajar y vivir en paz. La prioridad de su familia es el indulto para un padre condenado a 27 años por intento de golpe.»</p></div>
+    <div><p class="cap" style="margin-top:0">Pieza en portugués</p><p style="font-size:29px;line-height:1.38;font-weight:600;color:var(--g800)">«A prioridade da nossa família é trabalhar e viver em paz. A prioridade da família dele é o indulto para um pai condenado a 27 anos por tentativa de golpe.»</p></div>
+   </div>
+   <div class="card fx r" style="flex:1;display:grid;grid-template-columns:330px 1fr 1fr;gap:30px;align-items:center;padding:28px 36px;border-left:14px solid var(--y500)">
+    <div><p style="font-size:44px;font-weight:900;line-height:1;color:var(--g500)">Seguridad</p><p class="cap">Fuente</p><p style="font-size:21px;line-height:1.35">Revista Oeste, 12/08/2026</p></div>
+    <div><p class="cap" style="margin-top:0">Pieza en español</p><p style="font-size:29px;line-height:1.38">«La prioridad de nuestra familia es volver segura a casa. Su equipo quiere más armas dentro de casa.»</p></div>
+    <div><p class="cap" style="margin-top:0">Pieza en portugués</p><p style="font-size:29px;line-height:1.38;font-weight:600;color:var(--g800)">«A prioridade da nossa família é voltar em segurança para casa. A equipe dele quer mais armas dentro de casa.»</p></div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- ================= PECADOS (apertura) ================= -->
+<section class="st t-navy" data-sec="Campaña ciudadana (lado B)" data-shape="none">
+ <div style="position:absolute;left:128px;top:150px;width:760px">
+  <p class="eb fx">Lado B</p>
+  <h2 class="ln" style="font-size:70px;font-weight:900;line-height:1.08;margin-top:20px"><span>Campaña ciudadana (lado B): los pecados capitales</span></h2>
+  <p class="fx" style="font-size:30px;font-weight:500;line-height:1.45;margin-top:34px;color:#C9D1EA">La tentación de Flávio, el pecado y el hecho que la desmiente; la serpiente y la manzana del Edén van solo en la imagen</p>
+ </div>
+ <img class="fx s" src="assets/ira.jpg" alt="Pieza Ira de la serie ciudadana" style="position:absolute;left:1080px;top:150px;width:624px;height:780px;object-fit:cover;box-shadow:0 30px 80px rgba(0,0,0,.55);border-radius:8px;transform:rotate(-3deg)">
+</section>
+
+<!-- PECADO template -->
+<section class="st t-navy" data-sec="Campaña ciudadana (lado B)" data-shape="none">
+ <img class="fx l" src="assets/avareza.jpg" alt="Pieza Avareza de la serie ciudadana" style="position:absolute;left:128px;top:120px;width:672px;height:840px;object-fit:cover;box-shadow:0 30px 70px rgba(0,0,0,.5);border-radius:8px">
+ <div style="position:absolute;left:870px;top:120px;width:922px">
+  <p class="eb fx" style="font-size:22px">Campaña ciudadana (lado B): los pecados capitales</p>
+  <h2 class="ln" style="font-size:76px;font-weight:900;line-height:1.08;margin-top:12px"><span>AVARICIA (AVAREZA)</span></h2>
+  <div class="fx" style="margin-top:26px;background:var(--navy2);border-left:10px solid var(--y500);border-radius:12px;padding:20px 28px"><p class="cap" style="margin:0 0 6px;color:var(--y400)">La tentación (lo que promete)</p><p style="font-size:25px;font-weight:600">«El Bolsa Família es sagrado, nadie lo toca» (8 de octubre de 2026)</p></div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px">
+   <div class="fx" style="background:var(--paper);border-radius:12px;padding:20px 24px"><p class="cap" style="margin:0 0 6px;color:var(--g600)">Pieza en español</p><p style="font-size:23px;line-height:1.38;font-weight:600;color:var(--navy)">«Te promete que nadie toca el Bolsa Família. Votó para negarles el BPC a ancianos pobres y personas con discapacidad.»</p></div>
+   <div class="fx" style="background:var(--y500);border-radius:12px;padding:20px 24px"><p class="cap" style="margin:0 0 6px;color:var(--g800)">Pieza en portugués</p><p style="font-size:23px;line-height:1.38;font-weight:600;color:var(--navy)">«Promete que ninguém toca no Bolsa Família. Votou para negar o BPC a idosos pobres e pessoas com deficiência.»</p></div>
+  </div>
+  <div class="fx" style="margin-top:18px;background:var(--navy2);border-left:10px solid var(--g400);border-radius:12px;padding:20px 28px"><p class="cap" style="margin:0 0 6px;color:#8FDB7E">Hecho y fuente</p><p style="font-size:23px;line-height:1.42">En marzo y noviembre de 2020 votó por mantener el veto que impedía subir el límite de ingreso del BPC de un cuarto a medio salario mínimo (ICL Notícias, 7 de octubre de 2026).</p></div>
+ </div>
+</section>
+
+<section class="st t-navy" data-sec="Campaña ciudadana (lado B)" data-shape="none">
+ <img class="fx l" src="assets/gula.jpg" alt="Pieza Gula de la serie ciudadana" style="position:absolute;left:128px;top:120px;width:672px;height:840px;object-fit:cover;box-shadow:0 30px 70px rgba(0,0,0,.5);border-radius:8px">
+ <div style="position:absolute;left:870px;top:120px;width:922px">
+  <p class="eb fx" style="font-size:22px">Campaña ciudadana (lado B): los pecados capitales</p>
+  <h2 class="ln" style="font-size:76px;font-weight:900;line-height:1.08;margin-top:12px"><span>GULA</span></h2>
+  <div class="fx" style="margin-top:26px;background:var(--navy2);border-left:10px solid var(--y500);border-radius:12px;padding:20px 28px"><p class="cap" style="margin:0 0 6px;color:var(--y400)">La tentación (lo que promete)</p><p style="font-size:25px;font-weight:600">«Libertad para que el trabajador elija su jornada» (6 de octubre)</p></div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px">
+   <div class="fx" style="background:var(--paper);border-radius:12px;padding:20px 24px"><p class="cap" style="margin:0 0 6px;color:var(--g600)">Pieza en español</p><p style="font-size:23px;line-height:1.38;font-weight:600;color:var(--navy)">«Te ofrece libertad para elegir tu jornada. Quiere comerse tu salario: menos horas, menos sueldo.»</p></div>
+   <div class="fx" style="background:var(--y500);border-radius:12px;padding:20px 24px"><p class="cap" style="margin:0 0 6px;color:var(--g800)">Pieza en portugués</p><p style="font-size:23px;line-height:1.38;font-weight:600;color:var(--navy)">«Oferece liberdade para escolher sua jornada. Quer comer o seu salário: menos horas, menos salário.»</p></div>
+  </div>
+  <div class="fx" style="margin-top:18px;background:var(--navy2);border-left:10px solid var(--g400);border-radius:12px;padding:20px 28px"><p class="cap" style="margin:0 0 6px;color:#8FDB7E">Hecho y fuente</p><p style="font-size:23px;line-height:1.42">Defiende la PEC 12/2026, que permite reducir la jornada con una reducción proporcional del salario, las vacaciones, el aguinaldo y el fondo de garantía mediante acuerdo individual (Intercept Brasil, 7 de octubre de 2026).</p></div>
+ </div>
+</section>
+
+<section class="st t-navy" data-sec="Campaña ciudadana (lado B)" data-shape="none">
+ <img class="fx l" src="assets/preguica.jpg" alt="Pieza Preguiça de la serie ciudadana" style="position:absolute;left:128px;top:120px;width:672px;height:840px;object-fit:cover;box-shadow:0 30px 70px rgba(0,0,0,.5);border-radius:8px">
+ <div style="position:absolute;left:870px;top:120px;width:922px">
+  <p class="eb fx" style="font-size:22px">Campaña ciudadana (lado B): los pecados capitales</p>
+  <h2 class="ln" style="font-size:76px;font-weight:900;line-height:1.08;margin-top:12px"><span>PEREZA (PREGUIÇA)</span></h2>
+  <div class="fx" style="margin-top:26px;background:var(--navy2);border-left:10px solid var(--y500);border-radius:12px;padding:20px 28px"><p class="cap" style="margin:0 0 6px;color:var(--y400)">La tentación (lo que promete)</p><p style="font-size:25px;font-weight:600">«Un nuevo presidente para un nuevo Brasil» (9 de octubre)</p></div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px">
+   <div class="fx" style="background:var(--paper);border-radius:12px;padding:20px 24px"><p class="cap" style="margin:0 0 6px;color:var(--g600)">Pieza en español</p><p style="font-size:23px;line-height:1.38;font-weight:600;color:var(--navy)">«Promete trabajar por un nuevo Brasil. Faltó al 43 % de las votaciones del Senado en 2026.»</p></div>
+   <div class="fx" style="background:var(--y500);border-radius:12px;padding:20px 24px"><p class="cap" style="margin:0 0 6px;color:var(--g800)">Pieza en portugués</p><p style="font-size:23px;line-height:1.38;font-weight:600;color:var(--navy)">«Promete trabalhar por um novo Brasil. Faltou a 43% das votações do Senado em 2026.»</p></div>
+  </div>
+  <div class="fx" style="margin-top:18px;background:var(--navy2);border-left:10px solid var(--g400);border-radius:12px;padding:20px 28px"><p class="cap" style="margin:0 0 6px;color:#8FDB7E">Hecho y fuente</p><p style="font-size:23px;line-height:1.42">Estuvo ausente o no votó en el 43 % de las votaciones nominales entre el 24 de febrero y el 16 de junio; el promedio fue del 20 % (Folha, publicado por Estado de Minas, 28 de junio de 2026).</p></div>
+ </div>
+</section>
+
+<section class="st t-navy" data-sec="Campaña ciudadana (lado B)" data-shape="none">
+ <img class="fx l" src="assets/soberba.jpg" alt="Pieza Soberba de la serie ciudadana" style="position:absolute;left:128px;top:120px;width:672px;height:840px;object-fit:cover;box-shadow:0 30px 70px rgba(0,0,0,.5);border-radius:8px">
+ <div style="position:absolute;left:870px;top:120px;width:922px">
+  <p class="eb fx" style="font-size:22px">Campaña ciudadana (lado B): los pecados capitales</p>
+  <h2 class="ln" style="font-size:76px;font-weight:900;line-height:1.08;margin-top:12px"><span>SOBERBIA (SOBERBA)</span></h2>
+  <div class="fx" style="margin-top:26px;background:var(--navy2);border-left:10px solid var(--y500);border-radius:12px;padding:20px 28px"><p class="cap" style="margin:0 0 6px;color:var(--y400)">La tentación (lo que promete)</p><p style="font-size:25px;font-weight:600">«Entregar Brasil en las manos de Dios» (10 de octubre)</p></div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px">
+   <div class="fx" style="background:var(--paper);border-radius:12px;padding:20px 24px"><p class="cap" style="margin:0 0 6px;color:var(--g600)">Pieza en español</p><p style="font-size:23px;line-height:1.38;font-weight:600;color:var(--navy)">«Dice que entregará Brasil en las manos de Dios. Anuncia que un condenado por golpe le pondrá la banda presidencial.»</p></div>
+   <div class="fx" style="background:var(--y500);border-radius:12px;padding:20px 24px"><p class="cap" style="margin:0 0 6px;color:var(--g800)">Pieza en portugués</p><p style="font-size:23px;line-height:1.38;font-weight:600;color:var(--navy)">«Diz que vai entregar o Brasil nas mãos de Deus. Anuncia que um condenado por golpe vai lhe colocar a faixa presidencial.»</p></div>
+  </div>
+  <div class="fx" style="margin-top:18px;background:var(--navy2);border-left:10px solid var(--g400);border-radius:12px;padding:20px 28px"><p class="cap" style="margin:0 0 6px;color:#8FDB7E">Hecho y fuente</p><p style="font-size:23px;line-height:1.42">«Verán a Jair Messias Bolsonaro poniéndome la banda presidencial» (acto en São Gonçalo, 10 de octubre de 2026, CartaCapital).</p></div>
+ </div>
+</section>
+
+<section class="st t-navy" data-sec="Campaña ciudadana (lado B)" data-shape="none">
+ <img class="fx l" src="assets/ira.jpg" alt="Pieza Ira de la serie ciudadana" style="position:absolute;left:128px;top:120px;width:672px;height:840px;object-fit:cover;box-shadow:0 30px 70px rgba(0,0,0,.5);border-radius:8px">
+ <div style="position:absolute;left:870px;top:120px;width:922px">
+  <p class="eb fx" style="font-size:22px">Campaña ciudadana (lado B): los pecados capitales</p>
+  <h2 class="ln" style="font-size:76px;font-weight:900;line-height:1.08;margin-top:12px"><span>IRA</span></h2>
+  <div class="fx" style="margin-top:26px;background:var(--navy2);border-left:10px solid var(--y500);border-radius:12px;padding:20px 28px"><p class="cap" style="margin:0 0 6px;color:var(--y400)">La tentación (lo que promete)</p><p style="font-size:25px;font-weight:600">Mano dura contra las facciones criminales y cinco nuevas cárceles federales (programa del 9 de octubre)</p></div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px">
+   <div class="fx" style="background:var(--paper);border-radius:12px;padding:20px 24px"><p class="cap" style="margin:0 0 6px;color:var(--g600)">Pieza en español</p><p style="font-size:23px;line-height:1.38;font-weight:600;color:var(--navy)">«Te promete seguridad. Quiere más armas dentro de casa.»</p></div>
+   <div class="fx" style="background:var(--y500);border-radius:12px;padding:20px 24px"><p class="cap" style="margin:0 0 6px;color:var(--g800)">Pieza en portugués</p><p style="font-size:23px;line-height:1.38;font-weight:600;color:var(--navy)">«Promete segurança. Quer mais armas dentro de casa.»</p></div>
+  </div>
+  <div class="fx" style="margin-top:18px;background:var(--navy2);border-left:10px solid var(--g400);border-radius:12px;padding:20px 28px"><p class="cap" style="margin:0 0 6px;color:#8FDB7E">Hecho y fuente</p><p style="font-size:23px;line-height:1.42">El equipo de campaña de Flávio propone revisar las restricciones del Gobierno de Lula y aprobar una ley que garantice la tenencia de armas y prohíba que el Estado las confisque (Revista Oeste, 12 de agosto de 2026).</p></div>
+ </div>
+</section>
+
+<section class="st t-navy" data-sec="Campaña ciudadana (lado B)" data-shape="none">
+ <img class="fx l" src="assets/gula-pai.jpg" alt="Pieza Gula: de pai para filho, fome de poder" style="position:absolute;left:340px;top:100px;width:587px;height:880px;object-fit:cover;box-shadow:0 30px 70px rgba(0,0,0,.5);border-radius:8px;transform:rotate(-3deg)">
+ <img class="fx r" src="assets/soberbia-padre.jpg" alt="Pieza Soberbia: del padre al hijo, el país no es su trono" style="position:absolute;left:993px;top:100px;width:587px;height:880px;object-fit:cover;box-shadow:0 30px 70px rgba(0,0,0,.5);border-radius:8px;transform:rotate(3deg)">
+</section>
+
+<!-- ================= CONTRAPORTADA ================= -->
+<section class="st t-green" data-sec="Cierre" data-shape="anillo" data-sx="1460" data-sy="470" data-ss="526" data-pc="gold">
+ <img class="circ fx s" src="assets/lula-oficial.jpg" alt="Retrato oficial de Lula con la banda presidencial" style="left:1245px;top:255px;width:431px;height:431px">
+ <svg class="rombo draw" viewBox="0 0 1300 1000" style="left:1060px;top:163px;width:800px;height:615px" aria-hidden="true">
+  <path class="fx" fill="url(#gY)" fill-rule="evenodd" d="M0 500 L650 0 L1300 500 L650 1000 Z M300 500 A350 350 0 1 0 1000 500 A350 350 0 1 0 300 500 Z"/>
+  <path fill="none" stroke="#7BD143" stroke-width="12" d="M0 500 L650 0 L1300 500 L650 1000 Z"/>
+ </svg>
+ <div style="position:absolute;left:128px;top:200px;width:860px">
+  <p class="ln" style="font-size:118px;font-weight:900;line-height:1;color:var(--y400)"><span>A mudança</span></p>
+  <p class="ln" style="font-size:118px;font-weight:900;line-height:1;color:var(--y400)"><span>continua.</span></p>
+  <p class="ln" style="font-size:72px;font-weight:900;line-height:1.05;margin-top:22px;color:var(--cream)"><span>Por todas as famílias.</span></p>
+  <p class="fx" style="font-size:38px;font-weight:700;margin-top:30px;color:#D8F0C4">El cambio continúa. Por todas las familias.</p>
+ </div>
+ <div class="fx l" style="position:absolute;left:128px;top:880px;width:1380px;height:130px;background:rgba(18,63,32,.85);display:flex;flex-direction:column;justify-content:center;padding:0 40px;gap:6px;border-radius:16px 0 0 16px">
+  <p style="font-size:30px;font-weight:800;color:var(--cream)">Comunicación política, <i>storytelling</i> y narrativa</p>
+  <p style="font-size:23px;font-weight:500;color:#DCEFC9">Diplomatura en Campañas Electorales, Estrategia Política e Inteligencia Artificial</p>
+ </div>
+ <div class="fx r" style="position:absolute;left:1508px;top:880px;width:284px;height:130px;background:linear-gradient(135deg,#F9D84A,#E9B21F);display:flex;align-items:center;justify-content:center;border-radius:0 16px 16px 0">
+  <p style="font-size:48px;font-weight:900;color:var(--g800)">Grupo 1</p>
+ </div>
+</section>
+
+</div></div>
+<canvas id="fx"></canvas>
+<div id="hint">← → o clic para avanzar · O vista general · F pantalla completa</div>
+<div id="hud"><span class="sec" id="secname"></span><span class="sp"></span>
+<button id="bcom" aria-label="Comentar esta lámina" title="Comentar esta lámina" style="display:none;width:auto;border-radius:999px;padding:0 18px;font-size:15px;background:var(--y500);color:var(--g900)">💬 Comentar esta lámina</button><button id="bprev" aria-label="Anterior">‹</button><span class="num" id="num"></span><button id="bnext" aria-label="Siguiente">›</button></div>
+
+<script>
+(()=>{
+const world=document.getElementById('world');
+const S=[...document.querySelectorAll('.st')];
+const REDUCE=matchMedia('(prefers-reduced-motion: reduce)').matches;
+let VW=innerWidth,VH=innerHeight,FIT=1;
+function fit(){VW=innerWidth;VH=innerHeight;FIT=Math.min(VW/1920,VH/1080)}
+fit();
+
+/* ---------- layout: serpentine path, slight rotations ---------- */
+const COLS=6,DX=2450,DY=1650,ROT=[0,-5,4,-3,6,-4,3,-6,5,-2,4,-5];
+S.forEach((st,i)=>{
+  const row=Math.floor(i/COLS);let col=i%COLS;if(row%2)col=COLS-1-col;
+  const x=col*DX+(row%2?280:0), y=row*DY+(col%2?240:-140), r=REDUCE?0:ROT[i%ROT.length];
+  st._x=x;st._y=y;st._r=r;
+  st.style.left=(x-960)+'px';st.style.top=(y-540)+'px';st.style.transform=`rotate(${r}deg)`;
+  st.classList.add('idle');
+  st.querySelectorAll('.draw path,.draw line').forEach(p=>{let L=1800;try{L=Math.ceil(p.getTotalLength())+20}catch(e){}p.style.setProperty('--len',L)});
+  st.addEventListener('click',()=>{if(document.body.classList.contains('ov')){closeOv(i)}else if(i!==cur)go(i)});
+});
+
+/* ---------- camera ---------- */
+const cam={x:S[0]._x,y:S[0]._y,z:1,r:S[0]._r};
+function render(){
+  const s=FIT*cam.z;
+  world.style.transform=`translate(${VW/2}px,${VH/2}px) scale(${s}) rotate(${-cam.r}deg) translate(${-cam.x}px,${-cam.y}px)`;
+}
+const easeIO=t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;
+let anim=null;
+function tween(to,dur,dive,done){
+  if(anim)cancelAnimationFrame(anim.id);
+  const f={...cam},t0=performance.now();
+  const dist=Math.hypot(to.x-f.x,to.y-f.y);
+  const dip=dive?Math.min(.62,Math.max(.18,dist/7000)):0;
+  const step=now=>{
+    let t=Math.min(1,(now-t0)/dur),e=easeIO(t);
+    cam.x=f.x+(to.x-f.x)*e;cam.y=f.y+(to.y-f.y)*e;cam.r=f.r+(to.r-f.r)*e;
+    cam.z=(f.z+(to.z-f.z)*e)*(1-dip*Math.sin(Math.PI*t));
+    render();
+    if(t<1)anim.id=requestAnimationFrame(step);else{anim=null;done&&done()}
+  };
+  anim={id:requestAnimationFrame(step)};
+}
+
+/* ---------- reveal ---------- */
+function fmt(v,dec,thou){let s=v.toFixed(dec);let [a,b]=s.split('.');if(thou)a=a.replace(/\B(?=(\d{3})+(?!\d))/g,'.');return b?a+','+b:a}
+function arm(st){ // hidden state, no transition
+  st.classList.remove('idle','on');
+  st.querySelectorAll('.cnt').forEach(c=>{if(!c._t)c._t=c.textContent;c.textContent=fmt(0,+c.dataset.dec||0,c.dataset.thou)});
+}
+function reveal(st){
+  let i=0;
+  st.querySelectorAll('.ln>span').forEach((e,k)=>e.style.transitionDelay=(80+k*140)+'ms');
+  const base=st.querySelectorAll('.ln').length*140+120;
+  st.querySelectorAll('.fx').forEach(e=>{e.style.transitionDelay=(base+(i++)*95)+'ms'});
+  void st.offsetWidth;st.classList.add('on');
+  st.querySelectorAll('.cnt').forEach((c,k)=>{
+    const to=parseFloat(c.dataset.to),dec=+c.dataset.dec||0,th=c.dataset.thou,d=1700,t0=performance.now()+base+300+k*90;
+    const f=now=>{const t=Math.max(0,Math.min(1,(now-t0)/d)),e=1-Math.pow(1-t,4);
+      c.textContent=t>=1?c._t:fmt(to*e,dec,th);if(t<1&&st.classList.contains('on'))requestAnimationFrame(f);else c.textContent=c._t};
+    requestAnimationFrame(f);
+  });
+}
+function rest(st){st.querySelectorAll('video,audio').forEach(v=>{v.pause()});st.classList.remove('on');st.classList.add('idle');st.querySelectorAll('.cnt').forEach(c=>{if(c._t)c.textContent=c._t})}
+
+/* ---------- navigation ---------- */
+let cur=-1;
+const num=document.getElementById('num'),secname=document.getElementById('secname'),prog=document.getElementById('prog');
+function hud(){num.textContent=String(cur+1).padStart(2,'0')+' / '+S.length;secname.textContent=S[cur].dataset.sec||'';prog.style.width=((cur+1)/S.length*100)+'%';
+  history.replaceState(null,'','#'+(cur+1))}
+function go(i,instant){
+  if(i<0||i>=S.length)return;
+  const prev=S[cur],st=S[i];
+  if(prev&&prev!==st){prev.classList.remove('cur');rest(prev)}
+  cur=i;arm(st);st.classList.add('cur');hud();
+  Swarm.scatter();
+  const to={x:st._x,y:st._y,z:1,r:st._r};
+  const done=()=>{reveal(st);Swarm.to(st)};
+  if(instant||REDUCE){Object.assign(cam,to);render();done();return}
+  const d=Math.hypot(to.x-cam.x,to.y-cam.y);
+  tween(to,Math.min(2100,900+d*.22),true,done);
+}
+const next=()=>go(cur+1),prev=()=>go(cur-1);
+addEventListener('keydown',e=>{
+  if(document.body.classList.contains('ov')){if(['Escape','o','O','Enter'].includes(e.key))closeOv(cur);return}
+  if(['ArrowRight','ArrowDown','PageDown',' ','Enter'].includes(e.key)){e.preventDefault();next()}
+  else if(['ArrowLeft','ArrowUp','PageUp','Backspace'].includes(e.key)){e.preventDefault();prev()}
+  else if(e.key==='Home')go(0);else if(e.key==='End')go(S.length-1);
+  else if(e.key==='o'||e.key==='O'||e.key==='Escape')openOv();
+  else if(e.key==='f'||e.key==='F'){document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen().catch(()=>{})}
+});
+document.getElementById('bnext').onclick=e=>{e.stopPropagation();next()};
+document.getElementById('bprev').onclick=e=>{e.stopPropagation();prev()};
+document.getElementById('viewport').addEventListener('click',e=>{if(!document.body.classList.contains('ov')&&e.target.closest('.st.cur')&&!e.target.closest('video')&&!e.target.closest('.player'))next()});
+let tx=null;addEventListener('touchstart',e=>{tx=e.touches[0].clientX},{passive:true});
+addEventListener('touchend',e=>{if(tx==null)return;const dx=e.changedTouches[0].clientX-tx;if(Math.abs(dx)>50)(dx<0?next:prev)();tx=null});
+addEventListener('resize',()=>{fit();render();if(cur>=0)Swarm.to(S[cur],true)});
+
+/* ---------- overview ---------- */
+function openOv(){
+  document.body.classList.add('ov');Swarm.scatter();
+  let x0=1e9,y0=1e9,x1=-1e9,y1=-1e9;S.forEach(s=>{x0=Math.min(x0,s._x-1100);x1=Math.max(x1,s._x+1100);y0=Math.min(y0,s._y-700);y1=Math.max(y1,s._y+700)});
+  const z=Math.min(VW/(x1-x0),VH/(y1-y0))/FIT;
+  tween({x:(x0+x1)/2,y:(y0+y1)/2,z,r:0},1400,false);
+}
+function closeOv(i){document.body.classList.remove('ov');const st=S[i];if(i===cur){tween({x:st._x,y:st._y,z:1,r:st._r},1300,false,()=>{Swarm.to(st)})}else go(i)}
+
+/* ---------- particle swarm ---------- */
+const Swarm=(()=>{
+  const cv=document.getElementById('fx'),ctx=cv.getContext('2d');let DPR=Math.min(2,devicePixelRatio||1);
+  const N=REDUCE?0:(innerWidth<800?500:1300);
+  const P=[];const PAL={gold:['#F9D84A','#F2C230','#FBE36A','#E3A81E','#FFF3B0'],green:['#2FA83A','#7BD143','#1E7A32','#F2C230','#5CC24A']};
+  function size(){cv.width=innerWidth*DPR;cv.height=innerHeight*DPR;cv.style.width=innerWidth+'px';cv.style.height=innerHeight+'px';ctx.setTransform(DPR,0,0,DPR,0,0)}
+  size();addEventListener('resize',size);
+  for(let i=0;i<N;i++)P.push({x:Math.random()*innerWidth,y:Math.random()*innerHeight,tx:0,ty:0,a:0,ta:.0,s:1.4+Math.random()*2.2,c:'#F2C230',ph:Math.random()*6.28,k:.035+Math.random()*.05});
+  function unit(kind){
+    const pts=[];
+    if(kind==='rombo'){while(pts.length<N){const u=Math.random()*2-1,v=Math.random()*2-1;if(Math.abs(u)+Math.abs(v)/.77<=1&&Math.hypot(u,v*.77)>.565)pts.push([u,v*.77])}}
+    else if(kind==='anillo'){for(let i=0;i<N;i++){const a=Math.random()*Math.PI*2,r=1+(Math.random()-.5)*.09*(1+Math.random()*2);pts.push([Math.cos(a)*r,Math.sin(a)*r])}}
+    return pts;
+  }
+  function frameRect(){const w=1920*FIT,h=1080*FIT;return{l:(innerWidth-w)/2,t:(innerHeight-h)/2,w,h}}
+  return{
+    scatter(){P.forEach(p=>{const a=Math.random()*6.28,r=(.3+Math.random()*.7)*Math.max(innerWidth,innerHeight)*.6;p.tx=innerWidth/2+Math.cos(a)*r;p.ty=innerHeight/2+Math.sin(a)*r;p.ta=.55;p.k=.02+Math.random()*.03})},
+    to(st,soft){
+      const kind=st.dataset.shape||'marco',pal=PAL[st.dataset.pc]||PAL.green,F=frameRect();
+      if(kind==='none'){P.forEach(p=>{p.ta=0});return}
+      if(kind==='marco'){
+        P.forEach((p,i)=>{const per=2*(F.w+F.h),d=Math.random()*per,inset=(8+Math.random()*16)*FIT;let x,y;
+          if(d<F.w){x=F.l+d;y=F.t+inset}else if(d<F.w+F.h){x=F.l+F.w-inset;y=F.t+d-F.w}else if(d<2*F.w+F.h){x=F.l+(d-F.w-F.h);y=F.t+F.h-inset}else{x=F.l+inset;y=F.t+(d-2*F.w-F.h)}
+          p.tx=x;p.ty=y;p.ta=.55+Math.random()*.35;p.c=pal[i%pal.length];if(!soft)p.k=.03+Math.random()*.05});return}
+      const U=unit(kind),cx=F.l+(+st.dataset.sx||960)*FIT,cy=F.t+(+st.dataset.sy||540)*FIT,R=(+st.dataset.ss||600)/2*FIT;
+      P.forEach((p,i)=>{const u=U[i%U.length];p.tx=cx+u[0]*R;p.ty=cy+u[1]*R;p.ta=.75+Math.random()*.25;p.c=pal[i%pal.length];if(!soft)p.k=.03+Math.random()*.05});
+    },
+    loop(now){
+      ctx.clearRect(0,0,innerWidth,innerHeight);
+      for(const p of P){
+        p.x+=(p.tx-p.x)*p.k+Math.sin(now/900+p.ph)*.25;p.y+=(p.ty-p.y)*p.k+Math.cos(now/1100+p.ph)*.25;p.a+=(p.ta-p.a)*.05;
+        if(p.a<.02)continue;ctx.globalAlpha=p.a;ctx.fillStyle=p.c;ctx.fillRect(p.x,p.y,p.s,p.s);
+      }
+      ctx.globalAlpha=1;requestAnimationFrame(Swarm.loop);
+    }
+  };
+})();
+requestAnimationFrame(Swarm.loop);
+
+/* ---------- comentarios del grupo ---------- */
+(async()=>{try{
+  const c=window.claude&&await window.claude.use("comments");if(!c)return;
+  const btn=document.getElementById('bcom');btn.style.display='';
+  btn.onclick=async e=>{e.stopPropagation();try{await c.openComposer({element:S[cur]})}catch(err){}};
+}catch(e){}})();
+
+/* ---------- reproductor de audio ---------- */
+document.querySelectorAll('.player').forEach(pl=>{
+  const au=pl.querySelector('audio'),btn=pl.querySelector('.playbtn'),bar=pl.querySelector('.seekbar'),seek=pl.querySelector('.seek'),
+    ip=pl.querySelector('.ico-play'),ipa=pl.querySelector('.ico-pause'),tc=pl.querySelector('.tcur'),td=pl.querySelector('.tdur');
+  const f=t=>Math.floor(t/60)+':'+String(Math.floor(t%60)).padStart(2,'0');
+  const ui=()=>{const on=!au.paused;ip.style.display=on?'none':'';ipa.style.display=on?'':'none'};
+  btn.addEventListener('click',e=>{e.stopPropagation();au.paused?au.play().catch(()=>{}):au.pause()});
+  au.addEventListener('play',ui);au.addEventListener('pause',ui);au.addEventListener('ended',ui);
+  au.addEventListener('loadedmetadata',()=>{if(isFinite(au.duration))td.textContent=f(au.duration)});
+  au.addEventListener('timeupdate',()=>{tc.textContent=f(au.currentTime);if(au.duration)bar.style.width=(au.currentTime/au.duration*100)+'%'});
+  seek.addEventListener('click',e=>{e.stopPropagation();const r=seek.getBoundingClientRect();if(au.duration)au.currentTime=(e.clientX-r.left)/r.width*au.duration});
+});
+
+/* ---------- boot ---------- */
+const h=parseInt(location.hash.slice(1));
+const start=()=>{render();go(isNaN(h)?0:Math.max(0,Math.min(S.length-1,h-1)),true)};
+(document.fonts&&document.fonts.ready?document.fonts.ready:Promise.resolve()).then(start);
+setTimeout(()=>{document.getElementById('hint').style.opacity=0},5000);
+})();
+</script>
+</body>
+</html>
