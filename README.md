@@ -1,20 +1,36 @@
 # Caso Grupo 1 · Campaña de Lula, segunda vuelta 2026
 
-Presentación animada del caso grupal (Diplomatura en Campañas Electorales, Estrategia Política e Inteligencia Artificial).
+Presentación animada del trabajo final del Grupo 1.
+
+**Diplomatura en Campañas Electorales, Estrategia Política e Inteligencia Artificial**
+Universidad de Buenos Aires · Facultad de Ciencias Económicas
+Profesor: Santiago Ruggero · Octubre de 2026
+
+## Integrantes
+- Cinthia Buczak
+- Aneliesse Garcia-Junco
+- Juan Manuel Rodriguez
+- Javier Bach Bilbao
+- Jorge Sánchez Erazo
+
+## Contenido
+**Contexto inicial:** contexto electoral y diagnóstico estratégico
+
+1. Framing: «El cambio continúa» (incluye el jingle de campaña)
+2. Caja de mensaje
+3. Componentes del mensaje
+4. Narrativa de campaña
+5. Eslogan y sistema de marca (incluye ejemplos de piezas y el jingle «Casa Nova»)
+
+**Anexos:** resultados que sostienen el mensaje, cinco ejes de campaña, cómo responde nuestra campaña, serie ciudadana de contraste, meta electoral, criterios de ejecución, «Primero nuestra familia, después su familia» y campaña ciudadana (lado B): los pecados capitales
 
 ## Cómo verla
 En línea: https://jsanchezerazo.github.io/Campana-Lula-UBA/
 
-También se puede abrir `index.html` en el navegador, o publicarla con GitHub Pages:
-1. Subir esta carpeta completa (con `assets/`) a un repositorio.
-2. Settings → Pages → Branch `main` / carpeta raíz → Save.
+Se recomienda abrirla en computadora, con Chrome o Edge. Los jingles se reproducen dentro de la presentación.
 
 ## Controles
 - → / espacio / clic: avanzar · ← retroceder
-- O: vista general (clic en una estación para ir a ella)
+- O: vista general (clic en una lámina para ir a ella)
 - F: pantalla completa
-- `#n` al final de la dirección abre directamente la estación n (ej. `index.html#14`)
-- Ctrl+P con "Guardar como PDF" exporta una página por estación
-
-## Comentarios del grupo
-Para proponer un cambio, abrir un *Issue* en este repositorio indicando el número de estación (abajo a la derecha de cada lámina) y el cambio.
+- `#n` al final de la dirección abre directamente la lámina n (ej. `index.html#14`)
